@@ -10,7 +10,11 @@ export class UsernameService {
   ) {}
 
   findAll(): Promise<Username[]> {
-    return this.usernameRepo.find();
+    return this.usernameRepo.find({
+      order: {
+        id: 'ASC',
+      },
+    });
   }
 
   create(newUsername) {

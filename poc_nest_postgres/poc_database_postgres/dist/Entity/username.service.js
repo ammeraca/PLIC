@@ -22,7 +22,11 @@ let UsernameService = class UsernameService {
         this.usernameRepo = usernameRepo;
     }
     findAll() {
-        return this.usernameRepo.find();
+        return this.usernameRepo.find({
+            order: {
+                id: 'ASC',
+            },
+        });
     }
     create(newUsername) {
         this.usernameRepo.insert(newUsername);

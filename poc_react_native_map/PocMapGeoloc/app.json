@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "PocMapApp",
-    "slug": "PocMapApp",
+    "name": "PocMapGeoloc",
+    "slug": "PocMapGeoloc",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
