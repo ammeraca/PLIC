@@ -42,4 +42,26 @@ export class RiddleController {
     }
     return result;
   }
+
+  @Get('isSolved')
+  @HttpCode(200)
+  async is_riddle_solved(
+    @Res({ passthrough: true }) res: Response,
+    @Query('id') id: number,
+    @Query('latitude') latitude: number,
+    @Query('longitude') longitude: number,
+  ) {
+    if (id == null || latitude == null || longitude == null) {
+      res.status(HttpStatus.BAD_REQUEST).json({
+        status: 'BAD REQUEST',
+        message: 'missing mandatory argument type',
+      });
+    }
+    const result = await this.riddleService.isRiddleResolved(
+      id,
+      latitude,
+      longitude,
+    );
+    return result;
+  }
 }

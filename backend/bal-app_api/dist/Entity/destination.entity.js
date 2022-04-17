@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Destination = void 0;
 const typeorm_1 = require("typeorm");
+const riddle_entity_1 = require("./riddle.entity");
 let Destination = class Destination {
 };
 __decorate([
@@ -29,6 +30,10 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
 ], Destination.prototype, "latitude", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)((type) => riddle_entity_1.Riddle, (riddle) => riddle.destination),
+    __metadata("design:type", riddle_entity_1.Riddle)
+], Destination.prototype, "riddle", void 0);
 Destination = __decorate([
     (0, typeorm_1.Entity)()
 ], Destination);

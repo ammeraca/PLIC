@@ -5,4 +5,5 @@ export declare class RiddleService {
     constructor(riddleRepo: Repository<Riddle>);
     findAll(): Promise<Riddle[]>;
     findNextRiddle(type: string): Promise<Riddle>;
+    isRiddleResolved(id: number, longitude: number, latitude: number): Promise<boolean>;
 }

@@ -6,4 +6,5 @@ export declare class RiddleController {
     constructor(riddleService: RiddleService);
     getAll(): Promise<Riddle[]>;
     get_next_riddle(res: Response, type: string): Promise<Riddle>;
+    is_riddle_solved(res: Response, id: number, latitude: number, longitude: number): Promise<boolean>;
 }

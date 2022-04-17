@@ -32,6 +32,18 @@ let RiddleService = class RiddleService {
             .getOne();
         return tmp;
     }
+    async isRiddleResolved(id, longitude, latitude) {
+        const tmp = await this.riddleRepo
+            .createQueryBuilder('riddle')
+            .leftJoinAndSelect('riddle.destination', 'destination')
+            .where('riddle.id = :id', { id: id })
+            .getOne();
+        if (tmp.destination.latitude === latitude &&
+            tmp.destination.longitude === longitude) {
+            return true;
+        }
+        return false;
+    }
 };
 RiddleService = __decorate([
     (0, common_1.Injectable)(),

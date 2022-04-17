@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn, OneToMany } from 'typeorm';
+import { Riddle } from './riddle.entity';
 
 @Entity()
 export class Destination {
@@ -13,4 +14,7 @@ export class Destination {
 
   @Column()
   latitude: number;
+
+  @OneToMany((type) => Riddle, (riddle) => riddle.destination)
+  riddle: Riddle;
 }

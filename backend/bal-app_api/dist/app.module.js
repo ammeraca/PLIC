@@ -16,6 +16,7 @@ const riddle_entity_1 = require("./Entity/riddle.entity");
 const riddle_module_1 = require("./Modules/riddle.module");
 const group_module_1 = require("./Modules/group.module");
 const group_entity_1 = require("./Entity/group.entity");
+const destination_entity_1 = require("./Entity/destination.entity");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -30,7 +31,7 @@ AppModule = __decorate([
                 username: 'postgres',
                 password: 'password_poc',
                 database: 'BalApp',
-                entities: [riddle_entity_1.Riddle, parcours_entity_1.Parcours, group_entity_1.Group],
+                entities: [riddle_entity_1.Riddle, parcours_entity_1.Parcours, group_entity_1.Group, destination_entity_1.Destination],
             }),
         ],
         controllers: [app_controller_1.AppController],

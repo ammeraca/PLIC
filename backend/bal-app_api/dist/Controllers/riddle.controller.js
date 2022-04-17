@@ -38,6 +38,18 @@ let RiddleController = class RiddleController {
         }
         return result;
     }
+    async is_riddle_solved(res, id, latitude, longitude) {
+        common_1.Logger.log('start');
+        if (id == null || latitude == null || longitude == null) {
+            res.status(common_1.HttpStatus.BAD_REQUEST).json({
+                status: 'BAD REQUEST',
+                message: 'missing mandatory argument type',
+            });
+        }
+        const result = await this.riddleService.isRiddleResolved(id, latitude, longitude);
+        common_1.Logger.log(result);
+        return result;
+    }
 };
 __decorate([
     (0, common_1.Get)('all'),
@@ -54,6 +66,17 @@ __decorate([
     __metadata("design:paramtypes", [Object, String]),
     __metadata("design:returntype", Promise)
 ], RiddleController.prototype, "get_next_riddle", null);
+__decorate([
+    (0, common_1.Get)('isSolved'),
+    (0, common_1.HttpCode)(200),
+    __param(0, (0, common_1.Res)({ passthrough: true })),
+    __param(1, (0, common_1.Query)('id')),
+    __param(2, (0, common_1.Query)('latitude')),
+    __param(3, (0, common_1.Query)('longitude')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Number, Number, Number]),
+    __metadata("design:returntype", Promise)
+], RiddleController.prototype, "is_riddle_solved", null);
 RiddleController = __decorate([
     (0, common_1.Controller)('riddle'),
     __metadata("design:paramtypes", [riddle_service_1.RiddleService])

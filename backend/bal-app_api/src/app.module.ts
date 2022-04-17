@@ -7,6 +7,8 @@ import { Riddle } from './Entity/riddle.entity';
 import { RiddleModule } from './Modules/riddle.module';
 import { GroupModule } from './Modules/group.module';
 import { Group } from './Entity/group.entity';
+import { Destination } from './Entity/destination.entity';
+import { DestinationModule } from './Modules/destination.module';
 
 @Module({
   imports: [
@@ -19,7 +21,7 @@ import { Group } from './Entity/group.entity';
       username: 'postgres',
       password: 'password_poc',
       database: 'BalApp',
-      entities: [Riddle, Parcours, Group],
+      entities: [Riddle, Parcours, Group, Destination],
     }),
   ],
   controllers: [AppController],
