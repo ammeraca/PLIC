@@ -9,11 +9,15 @@ import { GroupModule } from './Modules/group.module';
 import { Group } from './Entity/group.entity';
 import { Destination } from './Entity/destination.entity';
 import { DestinationModule } from './Modules/destination.module';
+import { AuthorizationModule } from './authorization/authorization.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
     RiddleModule,
     GroupModule,
+    AuthorizationModule,
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',

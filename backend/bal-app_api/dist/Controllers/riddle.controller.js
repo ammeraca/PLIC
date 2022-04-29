@@ -39,7 +39,6 @@ let RiddleController = class RiddleController {
         return result;
     }
     async is_riddle_solved(res, id, latitude, longitude) {
-        common_1.Logger.log('start');
         if (id == null || latitude == null || longitude == null) {
             res.status(common_1.HttpStatus.BAD_REQUEST).json({
                 status: 'BAD REQUEST',
@@ -47,7 +46,6 @@ let RiddleController = class RiddleController {
             });
         }
         const result = await this.riddleService.isRiddleResolved(id, latitude, longitude);
-        common_1.Logger.log(result);
         return result;
     }
 };

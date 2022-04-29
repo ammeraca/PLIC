@@ -7,10 +7,13 @@ import {
   Query,
   Res,
   Logger,
+  UseGuards,
 } from '@nestjs/common';
 import { Riddle } from 'src/Entity/riddle.entity';
 import { RiddleService } from 'src/Services/riddle.service';
 import { Response } from 'express';
+import { AuthorizationGuard } from 'src/authorization/authorization.guard';
+import { ApiQuery } from '@nestjs/swagger';
 
 @Controller('riddle')
 export class RiddleController {

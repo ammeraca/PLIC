@@ -17,6 +17,8 @@ const riddle_module_1 = require("./Modules/riddle.module");
 const group_module_1 = require("./Modules/group.module");
 const group_entity_1 = require("./Entity/group.entity");
 const destination_entity_1 = require("./Entity/destination.entity");
+const authorization_module_1 = require("./authorization/authorization.module");
+const config_1 = require("@nestjs/config");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -24,6 +26,8 @@ AppModule = __decorate([
         imports: [
             riddle_module_1.RiddleModule,
             group_module_1.GroupModule,
+            authorization_module_1.AuthorizationModule,
+            config_1.ConfigModule.forRoot(),
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'postgres',
                 host: 'localhost',
