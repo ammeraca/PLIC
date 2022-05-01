@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AchievementModule = void 0;
 const common_1 = require("@nestjs/common");
+const config_1 = require("@nestjs/config");
 const typeorm_1 = require("@nestjs/typeorm");
 const achivement_entity_1 = require("../Entity/achivement.entity");
 const achivement_service_1 = require("../Services/achivement.service");
@@ -15,7 +16,7 @@ let AchievementModule = class AchievementModule {
 };
 AchievementModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([achivement_entity_1.Achivement])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([achivement_entity_1.Achivement]), config_1.ConfigModule.forRoot()],
         providers: [achivement_service_1.AchivementService],
         controllers: [],
         exports: [achivement_service_1.AchivementService],

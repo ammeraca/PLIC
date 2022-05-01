@@ -1,4 +1,5 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
+import { ApiBearerAuth } from '@nestjs/swagger';
 import { AppService } from './app.service';
 import { AuthorizationGuard } from './authorization/authorization.guard';
 
@@ -9,11 +10,5 @@ export class AppController {
   @Get()
   getHello(): string {
     return this.appService.getHello();
-  }
-
-  @UseGuards(AuthorizationGuard)
-  @Get('test')
-  getProtected(): string {
-    return 'this should be protected';
   }
 }

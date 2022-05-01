@@ -6,6 +6,7 @@ const app_module_1 = require("./app.module");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     const config = new swagger_1.DocumentBuilder()
+        .addBearerAuth()
         .setTitle('BalApp API')
         .setDescription('The BalApp API description')
         .setVersion('1.0')

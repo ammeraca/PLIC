@@ -15,6 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RiddleController = void 0;
 const common_1 = require("@nestjs/common");
 const riddle_service_1 = require("../Services/riddle.service");
+const authorization_guard_1 = require("../authorization/authorization.guard");
+const swagger_1 = require("@nestjs/swagger");
 let RiddleController = class RiddleController {
     constructor(riddleService) {
         this.riddleService = riddleService;
@@ -50,12 +52,16 @@ let RiddleController = class RiddleController {
     }
 };
 __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, common_1.UseGuards)(authorization_guard_1.AuthorizationGuard),
     (0, common_1.Get)('all'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], RiddleController.prototype, "getAll", null);
 __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, common_1.UseGuards)(authorization_guard_1.AuthorizationGuard),
     (0, common_1.Get)('next_riddle?'),
     (0, common_1.HttpCode)(200),
     __param(0, (0, common_1.Res)({ passthrough: true })),
@@ -65,6 +71,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], RiddleController.prototype, "get_next_riddle", null);
 __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, common_1.UseGuards)(authorization_guard_1.AuthorizationGuard),
     (0, common_1.Get)('isSolved'),
     (0, common_1.HttpCode)(200),
     __param(0, (0, common_1.Res)({ passthrough: true })),

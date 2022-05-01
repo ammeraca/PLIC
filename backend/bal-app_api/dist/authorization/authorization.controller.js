@@ -9,30 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DestinationController = void 0;
+exports.AuthorizationController = void 0;
 const common_1 = require("@nestjs/common");
-const swagger_1 = require("@nestjs/swagger");
-const authorization_guard_1 = require("../authorization/authorization.guard");
-const destination_service_1 = require("../Services/destination.service");
-let DestinationController = class DestinationController {
-    constructor(destinationService) {
-        this.destinationService = destinationService;
+const authorization_service_1 = require("./authorization.service");
+let AuthorizationController = class AuthorizationController {
+    constructor(authorizationService) {
+        this.authorizationService = authorizationService;
     }
-    async getAll() {
-        return await this.destinationService.findAll();
+    async updateEmployee() {
+        return await this.authorizationService.getToken();
     }
 };
 __decorate([
-    (0, swagger_1.ApiBearerAuth)(),
-    (0, common_1.UseGuards)(authorization_guard_1.AuthorizationGuard),
-    (0, common_1.Get)('all'),
+    (0, common_1.Get)(''),
+    (0, common_1.HttpCode)(200),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], DestinationController.prototype, "getAll", null);
-DestinationController = __decorate([
-    (0, common_1.Controller)('destination'),
-    __metadata("design:paramtypes", [destination_service_1.DestinationService])
-], DestinationController);
-exports.DestinationController = DestinationController;
-//# sourceMappingURL=destination.controller.js.map
+], AuthorizationController.prototype, "updateEmployee", null);
+AuthorizationController = __decorate([
+    (0, common_1.Controller)('authorization'),
+    __metadata("design:paramtypes", [authorization_service_1.AuthorizationService])
+], AuthorizationController);
+exports.AuthorizationController = AuthorizationController;
+//# sourceMappingURL=authorization.controller.js.map

@@ -11,6 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AchivementController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
+const authorization_guard_1 = require("../authorization/authorization.guard");
 const achivement_service_1 = require("../Services/achivement.service");
 let AchivementController = class AchivementController {
     constructor(achivementService) {
@@ -21,6 +23,8 @@ let AchivementController = class AchivementController {
     }
 };
 __decorate([
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, common_1.UseGuards)(authorization_guard_1.AuthorizationGuard),
     (0, common_1.Get)('all'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),

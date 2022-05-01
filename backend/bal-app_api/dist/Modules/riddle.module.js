@@ -10,7 +10,6 @@ exports.RiddleModule = void 0;
 const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
 const typeorm_1 = require("@nestjs/typeorm");
-const authorization_module_1 = require("../authorization/authorization.module");
 const riddle_controller_1 = require("../Controllers/riddle.controller");
 const riddle_entity_1 = require("../Entity/riddle.entity");
 const riddle_service_1 = require("../Services/riddle.service");
@@ -19,7 +18,6 @@ let RiddleModule = class RiddleModule {
 RiddleModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            authorization_module_1.AuthorizationModule,
             config_1.ConfigModule.forRoot(),
             typeorm_1.TypeOrmModule.forFeature([riddle_entity_1.Riddle]),
         ],

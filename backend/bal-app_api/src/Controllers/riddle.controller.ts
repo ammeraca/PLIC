@@ -13,17 +13,21 @@ import { Riddle } from 'src/Entity/riddle.entity';
 import { RiddleService } from 'src/Services/riddle.service';
 import { Response } from 'express';
 import { AuthorizationGuard } from 'src/authorization/authorization.guard';
-import { ApiQuery } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiQuery } from '@nestjs/swagger';
 
 @Controller('riddle')
 export class RiddleController {
   constructor(private readonly riddleService: RiddleService) {}
 
+  @ApiBearerAuth()
+  @UseGuards(AuthorizationGuard)
   @Get('all')
   async getAll(): Promise<Riddle[]> {
     return await this.riddleService.findAll();
   }
 
+  @ApiBearerAuth()
+  @UseGuards(AuthorizationGuard)
   @Get('next_riddle?')
   @HttpCode(200)
   async get_next_riddle(
@@ -46,6 +50,8 @@ export class RiddleController {
     return result;
   }
 
+  @ApiBearerAuth()
+  @UseGuards(AuthorizationGuard)
   @Get('isSolved')
   @HttpCode(200)
   async is_riddle_solved(

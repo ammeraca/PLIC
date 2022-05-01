@@ -11,6 +11,7 @@ import { Destination } from './Entity/destination.entity';
 import { DestinationModule } from './Modules/destination.module';
 import { AuthorizationModule } from './authorization/authorization.module';
 import { ConfigModule } from '@nestjs/config';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [

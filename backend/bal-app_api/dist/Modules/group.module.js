@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GroupModule = void 0;
 const common_1 = require("@nestjs/common");
+const config_1 = require("@nestjs/config");
 const typeorm_1 = require("@nestjs/typeorm");
 const group_controller_1 = require("../Controllers/group.controller");
 const group_entity_1 = require("../Entity/group.entity");
@@ -16,7 +17,7 @@ let GroupModule = class GroupModule {
 };
 GroupModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([group_entity_1.Group])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([group_entity_1.Group]), config_1.ConfigModule.forRoot()],
         providers: [group_service_1.GroupService],
         controllers: [group_controller_1.GroupController],
         exports: [group_service_1.GroupService],

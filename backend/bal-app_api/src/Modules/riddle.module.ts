@@ -8,7 +8,6 @@ import { RiddleService } from 'src/Services/riddle.service';
 
 @Module({
   imports: [
-    AuthorizationModule,
     ConfigModule.forRoot(),
     TypeOrmModule.forFeature([Riddle]),
   ],
