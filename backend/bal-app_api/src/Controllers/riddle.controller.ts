@@ -2,11 +2,9 @@ import {
   Controller,
   Get,
   HttpCode,
-  HttpException,
   HttpStatus,
   Query,
   Res,
-  Logger,
   UseGuards,
 } from '@nestjs/common';
 import { Riddle } from 'src/Entity/riddle.entity';

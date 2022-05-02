@@ -17,4 +17,21 @@ export class GroupService {
     Logger.log(group.id);
     this.groupRepo.update(infoForModification.id, group);
   }
+
+  async getAll() {
+    return await this.groupRepo.find();
+  }
+
+  async getGroup(id: number) {
+    return await this.groupRepo
+    .createQueryBuilder('riddle')
+    .where('riddle.id = :id', { id: id })
+    .getOne();
+  }
+
+  async getUsersFromGroup(id: number): Promise<UserDbo[]>{
+    let groups = await this.groupRepo.createQueryBuilder('group').leftJoinAndSelect('group.users', 'user').getMany()
+    let users = groups.map(x => x.users)
+    return users[0];
+  }
 }

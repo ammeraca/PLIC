@@ -12,11 +12,14 @@ import { DestinationModule } from './Modules/destination.module';
 import { AuthorizationModule } from './authorization/authorization.module';
 import { ConfigModule } from '@nestjs/config';
 import { HttpModule } from '@nestjs/axios';
+import { User } from './Entity/user.entity';
+import { UserModule } from './Modules/user.module';
 
 @Module({
   imports: [
     RiddleModule,
     GroupModule,
+    UserModule,
     AuthorizationModule,
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
@@ -26,7 +29,7 @@ import { HttpModule } from '@nestjs/axios';
       username: 'postgres',
       password: 'password_poc',
       database: 'BalApp',
-      entities: [Riddle, Parcours, Group, Destination],
+      entities: [Riddle, Parcours, Group, Destination, User],
     }),
   ],
   controllers: [AppController],

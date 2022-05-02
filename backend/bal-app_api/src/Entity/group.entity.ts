@@ -1,7 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Entity, Column, PrimaryColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryColumn, ManyToOne, ManyToMany } from 'typeorm';
 import { Parcours } from './parcours.entity';
 import { Riddle } from './riddle.entity';
+import { User } from './user.entity';
 
 @Entity()
 export class Group {
@@ -26,4 +27,7 @@ export class Group {
 
   @ManyToOne((type) => Riddle, (riddle) => riddle.group)
   riddle: Riddle;
+
+  @ManyToMany((type) => User, (user) => user.groups)
+  users: User[]
 }
