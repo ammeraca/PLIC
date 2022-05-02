@@ -21,7 +21,7 @@ export class RiddleController {
 
   @ApiBearerAuth()
   @UseGuards(AuthorizationGuard)
-  @Get('all')
+  @Get('')
   async getAll(): Promise<Riddle[]> {
     return await this.riddleService.findAll();
   }

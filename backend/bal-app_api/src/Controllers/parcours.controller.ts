@@ -10,7 +10,7 @@ export class ParcoursController {
 
   @ApiBearerAuth()
   @UseGuards(AuthorizationGuard)
-  @Get('all')
+  @Get('')
   async getAll(): Promise<Parcours[]> {
     return await this.parcoursService.findAll();
   }

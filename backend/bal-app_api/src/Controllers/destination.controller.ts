@@ -10,7 +10,7 @@ export class DestinationController {
 
   @ApiBearerAuth()
   @UseGuards(AuthorizationGuard)
-  @Get('all')
+  @Get('')
   async getAll(): Promise<Destination[]> {
     return await this.destinationService.findAll();
   }

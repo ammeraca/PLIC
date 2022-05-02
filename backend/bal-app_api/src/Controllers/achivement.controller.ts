@@ -10,7 +10,7 @@ export class AchivementController {
 
   @ApiBearerAuth()
   @UseGuards(AuthorizationGuard)
-  @Get('all')
+  @Get('')
   async getAll(): Promise<Achivement[]> {
     return await this.achivementService.findAll();
   }
