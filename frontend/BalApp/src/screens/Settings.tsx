@@ -1,18 +1,11 @@
-import React, {useState} from "react";
-import {StyleSheet, View, FlatList, Alert, Keyboard, Text} from "react-native";
+import React from "react";
+import {View, Text} from "react-native";
+import {container} from "../styles/bases";
 
 export function SettingsScreen() {
     return (
-        <View style={styles.container}>
+        <View style={container.simple_center_flex1}>
             <Text>Settings</Text>
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-    },
-});

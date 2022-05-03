@@ -4,7 +4,7 @@ import {container} from "../styles/bases";
 
 export function ConversationScreen() {
     return (
-        <View style={container.simple_centered}>
+        <View style={container.simple_center}>
             <Text>Conversations</Text>
         </View>
     );

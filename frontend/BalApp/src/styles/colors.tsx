@@ -1,6 +1,6 @@
 import {StyleSheet} from "react-native";
 
-export const primary_color = StyleSheet.create({
+export const green = StyleSheet.create({
     extralight: {
         color: "#74e65c",
     },
@@ -18,7 +18,7 @@ export const primary_color = StyleSheet.create({
     },
 });
 
-export const secondary_color = StyleSheet.create({
+export const orange = StyleSheet.create({
     extralight: {
         color: "#ffce57",
     },
