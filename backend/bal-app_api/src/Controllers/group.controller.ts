@@ -39,4 +39,12 @@ export class GroupController {
   getUsersFromGroup(@Param('id') id: number) {
     return this.groupService.getUsersFromGroup(id);
   }
+
+  //@ApiBearerAuth()
+  //@UseGuards(AuthorizationGuard)
+  @Get(':id/messages')
+  @HttpCode(200)
+  getMessagesFromGroup(@Param('id') id: number) {
+    return this.groupService.GetMessagesFromGroup(id);
+  }
 }

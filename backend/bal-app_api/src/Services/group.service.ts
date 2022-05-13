@@ -15,7 +15,7 @@ export class GroupService {
     Logger.log(group.riddleId);
     group.riddleId = infoForModification.riddleId;
     Logger.log(group.id);
-    this.groupRepo.update(infoForModification.id, group);
+    this.groupRepo.update(infoForModification.id, group)
   }
 
   async getAll() {
@@ -24,14 +24,18 @@ export class GroupService {
 
   async getGroup(id: number) {
     return await this.groupRepo
-    .createQueryBuilder('riddle')
-    .where('riddle.id = :id', { id: id })
+    .createQueryBuilder('group')
+    .where('group.id = :id', { id: id })
     .getOne();
   }
 
   async getUsersFromGroup(id: number): Promise<UserDbo[]>{
-    let groups = await this.groupRepo.createQueryBuilder('group').leftJoinAndSelect('group.users', 'user').getMany()
-    let users = groups.map(x => x.users)
-    return users[0];
+    let group = await this.groupRepo.createQueryBuilder('group').leftJoinAndSelect('group.users', 'user').where('group.id = :id', { id: id }).getOne()
+    return group.users;
+  }
+
+  async GetMessagesFromGroup(id: number): Promise<MessagesDbo[]>{
+    let group = await this.groupRepo.createQueryBuilder('group').leftJoinAndSelect('group.messages', 'message').where('group.id = :id', { id: id }).getOne()
+    return group.messages;
   }
 }

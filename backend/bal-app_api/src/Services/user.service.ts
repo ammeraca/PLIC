@@ -13,14 +13,13 @@ export class UserService {
 
   async getGroup(id: number) {
     return await this.userRepo
-    .createQueryBuilder('riddle')
-    .where('riddle.id = :id', { id: id })
+    .createQueryBuilder('user')
+    .where('user.id = :id', { id: id })
     .getOne();
   }
 
   async getUsersFromGroup(id: number): Promise<GroupDbo[]> {
-    let users = await this.userRepo.createQueryBuilder('user').leftJoinAndSelect('user.groups', 'group').getMany()
-    let groups = users.map(x => x.groups)
-    return groups[0]
+    let user = await this.userRepo.createQueryBuilder('user').leftJoinAndSelect('user.groups', 'group').where('user.id = :id', { id: id }).getOne();
+    return user.groups;
   }
 }

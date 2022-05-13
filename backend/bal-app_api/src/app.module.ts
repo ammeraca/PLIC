@@ -14,6 +14,7 @@ import { ConfigModule } from '@nestjs/config';
 import { HttpModule } from '@nestjs/axios';
 import { User } from './Entity/user.entity';
 import { UserModule } from './Modules/user.module';
+import { Messages } from './Entity/messages.entity';
 
 @Module({
   imports: [
@@ -29,7 +30,7 @@ import { UserModule } from './Modules/user.module';
       username: 'postgres',
       password: 'password_poc',
       database: 'BalApp',
-      entities: [Riddle, Parcours, Group, Destination, User],
+      entities: [Riddle, Parcours, Group, Destination, User, Messages],
     }),
   ],
   controllers: [AppController],
