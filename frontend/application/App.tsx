@@ -8,7 +8,15 @@ import {MainScreen} from "./src/screens/Main";
 import {PuzzleScreen} from "./src/screens/Puzzles";
 import {SettingsScreen} from "./src/screens/Settings";
 
-const Tab = createBottomTabNavigator();
+export type RootTabParamList = {
+    Accueil: undefined; // undefined because you aren't passing any params to the home screen
+    Puzzles: undefined;
+    Conversations: undefined;
+    Account: undefined;
+    Settings: undefined;
+};
+
+const Tab = createBottomTabNavigator<RootTabParamList>();
 
 // authentification at https://reactnavigation.org/docs/auth-flow
 export default function App() {

@@ -6,9 +6,7 @@ export const titles = StyleSheet.create({
         fontSize: 60,
     },
     simple_title: {
-        fontFamily: "",
-        fontWeight: "bold",
-        color: "#010035",
+        fontFamily: "Montserrat-Bold",
         fontSize: 16,
     },
 });

@@ -5,6 +5,9 @@ export const container = StyleSheet.create({
         flex: 1,
         backgroundColor: "white",
     },
+    simple_flex1: {
+        flex: 1,
+    },
     simple_center_flex1: {
         flex: 1,
         justifyContent: "center",

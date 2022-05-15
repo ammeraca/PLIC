@@ -12,6 +12,7 @@
 // }
 import React, {useState} from "react";
 import {Dispatch} from "react";
+import {riddleIdentifier} from "../screens/Puzzles";
 
 // TODO: search UseState / useEffects !!
 
@@ -42,13 +43,16 @@ export const getRiddle = async (
 
         // TODO: handle type !
         const response = await fetch(
-            "https://bal-app-test.herokuapp.com/riddle/next_riddle?type=history",
+            "https://bal-app-test.herokuapp.com/riddle/select_riddle/" +
+                riddleIdentifier,
             {
                 headers: myHeaders,
             },
         );
         const json = await response.json();
-        setRiddle(json.text);
+
+        console.log(json.text.split("‚").join("é"));
+        setRiddle(json.text.split("‚").join("é"));
         return json.text;
     } catch (error) {
         console.error(error);
