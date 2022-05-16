@@ -1,4 +1,3 @@
-import {BottomTabScreenProps} from "@react-navigation/bottom-tabs";
 import React from "react";
 import {StyleSheet, View, Text, SafeAreaView, Image} from "react-native";
 import {TouchableOpacity} from "react-native";
