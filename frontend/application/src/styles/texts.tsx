@@ -13,7 +13,7 @@ export const titles = StyleSheet.create({
 
 export const texts = StyleSheet.create({
     simple_text: {
-        fontFamily: "",
+        fontFamily: "Montserrat-Medium",
         color: "#333333",
     },
 });

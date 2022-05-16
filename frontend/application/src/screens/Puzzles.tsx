@@ -3,7 +3,7 @@ import {View, Button, Alert, Text} from "react-native";
 import {createTwoButtonAlert} from "../components/alerts";
 import {getRiddle} from "../components/back";
 import {container} from "../styles/bases";
-import {titles} from "../styles/texts";
+import {texts} from "../styles/texts";
 
 export var riddleIdentifier: string = "1";
 
@@ -13,7 +13,7 @@ export function PuzzleScreen() {
     return (
         <View style={container.simple_center_flex1}>
             <View style={container.simple_center_flex2}>
-                <Text style={titles.simple_title}>{riddle}</Text>
+                <Text style={texts.simple_text}>{riddle}</Text>
             </View>
             <View style={container.simple_center_flex1}>
                 <Button

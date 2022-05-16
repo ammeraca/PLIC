@@ -12,8 +12,8 @@ export type RootTabParamList = {
     Accueil: undefined; // undefined because you aren't passing any params to the home screen
     Puzzles: undefined;
     Conversations: undefined;
-    Account: undefined;
-    Settings: undefined;
+    Compte: undefined;
+    Caméra: undefined;
 };
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
@@ -46,12 +46,12 @@ export default function App() {
                     options={{tabBarBadge: 3, headerShown: false}}
                 />
                 <Tab.Screen
-                    name="Account"
+                    name="Compte"
                     component={AccountScreen}
                     options={{headerShown: false}}
                 />
                 <Tab.Screen
-                    name="Settings"
+                    name="Caméra" // FIXME
                     component={SettingsScreen}
                     options={{headerShown: false}}
                 />

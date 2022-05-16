@@ -3,7 +3,7 @@ import React from "react";
 import {StyleSheet, View, Text, SafeAreaView, Image} from "react-native";
 import {TouchableOpacity} from "react-native";
 import MapView from "react-native-maps";
-import {Map} from "../components/maps";
+import {MapCurrent} from "../components/maps";
 import {container} from "../styles/bases";
 import {green} from "../styles/colors";
 import {titles} from "../styles/texts";
@@ -25,7 +25,7 @@ export function MainScreen({navigation}: Props) {
             <View style={container.simple_center_flex2}>
                 <Text style={[titles.app_title, green.principal]}>BalApp</Text>
             </View>
-            <Map />
+            <MapCurrent />
 
             <View
                 style={[
