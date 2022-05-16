@@ -29,11 +29,11 @@ export default function App() {
                     tabBarIcon: ({focused, color}) => {
                         let iconName;
 
-                        if (route.name === "Account") {
+                        if (route.name === "Compte") {
                             iconName = focused
                                 ? "md-person"
                                 : "md-person-outline";
-                        } else if (route.name === "Settings") {
+                        } else if (route.name === "Caméra") {
                             iconName = focused ? "camera" : "camera-outline";
                         } else if (route.name === "Accueil") {
                             iconName = focused ? "home" : "home-outline";

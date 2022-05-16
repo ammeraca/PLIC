@@ -1,9 +1,11 @@
 import React, {useState} from "react";
 import {View, Button, Alert, Text} from "react-native";
+import {TouchableOpacity} from "react-native-gesture-handler";
 import {createTwoButtonAlert} from "../components/alerts";
 import {getRiddle} from "../components/back";
 import {container} from "../styles/bases";
-import {texts} from "../styles/texts";
+import {green, orange} from "../styles/colors";
+import {texts, titles} from "../styles/texts";
 
 export var riddleIdentifier: string = "1";
 
@@ -12,18 +14,23 @@ export function PuzzleScreen() {
     getRiddle(setRiddle);
     return (
         <View style={container.simple_center_flex1}>
+            <View style={container.simple_center_flex1}>
+                <Text style={[titles.screen_title, orange.dark]}> ÉNIGME </Text>
+            </View>
             <View style={container.simple_center_flex2}>
-                <Text style={texts.simple_text}>{riddle}</Text>
+                <Text style={texts.riddle_text}>{riddle}</Text>
             </View>
             <View style={container.simple_center_flex1}>
-                <Button
+                <TouchableOpacity
                     onPress={() => {
                         riddleIdentifier = "2";
                         getRiddle(setRiddle);
                     }}
-                    title={"Vérifier"}
-                    color={"#46a233"}
-                />
+                    style={[green.background_principal, container.button]}>
+                    <View>
+                        <Text style={texts.button_text}>Vérifier</Text>
+                    </View>
+                </TouchableOpacity>
             </View>
         </View>
     );

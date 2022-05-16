@@ -50,6 +50,7 @@
 		5DCACB8F33CDC322A6C60F78 /* libPods-application.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-application.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = application/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-application-applicationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-application-applicationTests.release.xcconfig"; path = "Target Support Files/Pods-application-applicationTests/Pods-application-applicationTests.release.xcconfig"; sourceTree = "<group>"; };
+		B552686F28328D9800898B70 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Ionicons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		B5C2D6C528323E3D0031CED5 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/Montserrat/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		B5C2D6C628323E3D0031CED5 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-SemiBold.ttf"; path = "../assets/fonts/Montserrat/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		B5C2D6C728323E3D0031CED5 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Light.ttf"; path = "../assets/fonts/Montserrat/Montserrat-Light.ttf"; sourceTree = "<group>"; };
@@ -120,6 +121,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		777DC526424041D3A862D858 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +138,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				B552686E28328D5D00898B70 /* Icons */,
 				B5C2D6C528323E3D0031CED5 /* Montserrat-Bold.ttf */,
 				B5C2D6CA28323E3D0031CED5 /* Montserrat-Italic.ttf */,
 				B5C2D6C728323E3D0031CED5 /* Montserrat-Light.ttf */,
@@ -143,6 +152,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				777DC526424041D3A862D858 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -156,6 +166,14 @@
 				00E356EE1AD99517003FC87E /* applicationTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		B552686E28328D5D00898B70 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				B552686F28328D9800898B70 /* Ionicons.ttf */,
+			);
+			path = Icons;
 			sourceTree = "<group>";
 		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {

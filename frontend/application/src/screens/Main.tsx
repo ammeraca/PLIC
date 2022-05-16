@@ -5,7 +5,7 @@ import MapView from "react-native-maps";
 import {MapCurrent} from "../components/maps";
 import {container} from "../styles/bases";
 import {green} from "../styles/colors";
-import {titles} from "../styles/texts";
+import {texts, titles} from "../styles/texts";
 import {BottomTabNavigationProp} from "@react-navigation/bottom-tabs";
 import {RootTabParamList} from "../../App";
 
@@ -36,29 +36,20 @@ export function MainScreen({navigation}: Props) {
                     onPress={() => navigation.navigate("Puzzles")}
                     style={container.vertical_container}>
                     <Image
-                        source={require("../../assets/images/puzzle1.png")}
+                        source={require("../../assets/images/logo.png")}
                         style={{
-                            width: 80,
+                            width: 110,
                             height: 80,
                         }}
                     />
                     <View style={{marginLeft: 30, justifyContent: "center"}}>
-                        <Text style={styles.title}>Riddle</Text>
-                        <Text style={styles.text}>Here</Text>
+                        <Text style={titles.simple_title}>
+                            Votre énigme ici
+                        </Text>
+                        <Text style={texts.simple_text}>Qui suis-je ?</Text>
                     </View>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>
     );
 }
-
-const styles = StyleSheet.create({
-    title: {
-        fontWeight: "bold",
-        color: "#010035",
-        fontSize: 20,
-    },
-    text: {
-        color: "#333333",
-    },
-});

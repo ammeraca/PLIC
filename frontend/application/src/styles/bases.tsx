@@ -35,7 +35,7 @@ export const container = StyleSheet.create({
         borderRadius: 4,
         padding: 10,
         borderColor: "#333333",
-        shadowColor: "rgba(0,0,0,0.12)",
+        shadowColor: "rgba(0,0,0,0.5)",
         shadowOffset: {
             width: 0,
             height: 3,
@@ -43,6 +43,10 @@ export const container = StyleSheet.create({
         shadowRadius: 5,
         shadowOpacity: 1.0,
         elevation: 4,
+    },
+    button: {
+        alignItems: "center",
+        padding: 10,
     },
 });
 
