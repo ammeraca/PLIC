@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {View, Button, Alert, Text} from "react-native";
-import {TouchableOpacity} from "react-native-gesture-handler";
+import {TouchableOpacity} from "react-native";
 import {createTwoButtonAlert} from "../components/alerts";
 import {getRiddle} from "../components/back";
 import {container} from "../styles/bases";
