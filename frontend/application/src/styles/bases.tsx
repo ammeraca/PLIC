@@ -8,6 +8,9 @@ export const container = StyleSheet.create({
     simple_flex1: {
         flex: 1,
     },
+    simple_flex4: {
+        flex: 4,
+    },
     simple_center_flex1: {
         flex: 1,
         justifyContent: "center",
@@ -47,6 +50,45 @@ export const container = StyleSheet.create({
     button: {
         alignItems: "center",
         padding: 10,
+    },
+    row: {
+        flexDirection: "row",
+        marginBottom: 5,
+    },
+    infoBoxWrapper: {
+        borderBottomColor: "#dddddd",
+        borderBottomWidth: 1,
+        borderTopColor: "#dddddd",
+        borderTopWidth: 1,
+        flexDirection: "row",
+        height: 60,
+    },
+    infoBox: {
+        width: "50%",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    accountMenuItem: {
+        flexDirection: "row",
+        paddingVertical: 15,
+        paddingHorizontal: 30,
+    },
+    account_touchable: {
+        borderBottomColor: "#dddddd",
+        borderBottomWidth: 1,
+        borderTopColor: "#dddddd",
+        borderTopWidth: 1,
+    },
+    customize_view_border: {
+        borderBottomColor: "#dddddd",
+        borderBottomWidth: 1,
+        borderTopColor: "#dddddd",
+        borderTopWidth: 1,
+        borderLeftColor: "#dddddd",
+        borderLeftWidth: 1,
+        borderRightColor: "#dddddd",
+        borderRightWidth: 1,
+        borderRadius: 5,
     },
 });
 
