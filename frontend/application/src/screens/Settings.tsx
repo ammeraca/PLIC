@@ -3,7 +3,10 @@ import {View, Text} from "react-native";
 import {RNCamera} from "react-native-camera";
 import {container} from "../styles/bases";
 
+import {LogBox} from "react-native";
 export function SettingsScreen() {
+    LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
+    LogBox.ignoreAllLogs(); //Ignore all log notifications
     return (
         <View style={container.simple_flex1}>
             <RNCamera
