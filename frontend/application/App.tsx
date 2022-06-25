@@ -8,6 +8,7 @@ import {ConversationScreen} from "./src/screens/Conversations";
 import {MainScreen} from "./src/screens/Main";
 import {PuzzleScreen} from "./src/screens/Puzzles";
 import {SettingsScreen} from "./src/screens/Settings";
+import UnityScreen from "./src/screens/Unity";
 
 export type RootTabParamList = {
     Accueil: undefined; // undefined because you aren't passing any params to the home screen
@@ -80,7 +81,7 @@ export default function App() {
                 />
                 <Tab.Screen
                     name="Caméra" // FIXME
-                    component={SettingsScreen}
+                    component={UnityScreen}
                     options={{headerShown: false}}
                 />
             </Tab.Navigator>
