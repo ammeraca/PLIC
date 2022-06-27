@@ -16,6 +16,21 @@ export const green = StyleSheet.create({
     extradark: {
         color: "#146b00",
     },
+    background_extralight: {
+        backgroundColor: "#74e65c",
+    },
+    background_light: {
+        backgroundColor: "#58c042",
+    },
+    background_principal: {
+        backgroundColor: "#46a233",
+    },
+    background_dark: {
+        backgroundColor: "#1e8808",
+    },
+    background_extradark: {
+        backgroundColor: "#146b00",
+    },
 });
 
 export const orange = StyleSheet.create({
@@ -33,5 +48,20 @@ export const orange = StyleSheet.create({
     },
     extradark: {
         color: "#966a00",
+    },
+    background_extralight: {
+        backgroundColor: "#ffce57",
+    },
+    background_light: {
+        backgroundColor: "#ffc028",
+    },
+    background_principal: {
+        backgroundColor: "#f4ad00",
+    },
+    background_dark: {
+        backgroundColor: "#c38900",
+    },
+    background_extradark: {
+        backgroundColor: "#966a00",
     },
 });
