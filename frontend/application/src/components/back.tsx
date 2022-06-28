@@ -43,7 +43,7 @@ export const getRiddle = async (
 
         // TODO: handle type !
         const response = await fetch(
-            "https://bal-app-test.herokuapp.com/riddle/select_riddle/" +
+            "https://bal-app-test.herokuapp.com/riddles/select_riddle/" +
                 riddleIdentifier,
             {
                 headers: myHeaders,
