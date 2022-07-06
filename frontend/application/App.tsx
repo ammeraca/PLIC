@@ -11,6 +11,7 @@ import {ConversationScreen} from "./src/screens/Conversations";
 import {MainScreen} from "./src/screens/Main";
 import {PuzzleScreen} from "./src/screens/Puzzles";
 import {SettingsScreen} from "./src/screens/Settings";
+import UnityScreen from "./src/screens/Unity";
 
 import {container} from "./src/styles/bases";
 
@@ -108,7 +109,7 @@ export default function App() {
                     />
                     <Tab.Screen
                         name="Caméra" // FIXME
-                        component={SettingsScreen}
+                        component={UnityScreen}
                         options={{headerShown: false}}
                     />
                 </Tab.Navigator>
