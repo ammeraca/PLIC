@@ -268,6 +268,7 @@ sysinfo.txt
 *.aab
 *.unitypackage
 *.app
+*.so
 
 # Crashlytics generated file
 crashlytics-build.properties
