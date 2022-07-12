@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {StyleSheet, View, Text, SafeAreaView, Image} from "react-native";
 import {TouchableOpacity} from "react-native";
 import MapView from "react-native-maps";
@@ -8,6 +8,7 @@ import {green} from "../styles/colors";
 import {texts, titles} from "../styles/texts";
 import {BottomTabNavigationProp} from "@react-navigation/bottom-tabs";
 import {RootTabParamList} from "../../App";
+import {auth0, token} from "../../App";
 
 type MainScreenNavigationProp = BottomTabNavigationProp<
     RootTabParamList,
@@ -18,7 +19,17 @@ type Props = {
     navigation: MainScreenNavigationProp;
 };
 
+export var userInfo = {};
+
 export function MainScreen({navigation}: Props) {
+    const [info, setInfo] = useState(Object);
+    useEffect(() => {
+        auth0.auth
+            .userInfo({token: token})
+            .then(response => setInfo(response))
+            .catch(console.error);
+    }, []);
+    userInfo = info;
     return (
         <SafeAreaView style={container.main}>
             <View style={container.simple_center_flex2}>

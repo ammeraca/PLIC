@@ -5,6 +5,12 @@ export const container = StyleSheet.create({
         flex: 1,
         backgroundColor: "white",
     },
+    main_login_screen: {
+        flex: 1,
+        backgroundColor: "white",
+        justifyContent: "center",
+        alignItems: "center",
+    },
     simple_flex1: {
         flex: 1,
     },

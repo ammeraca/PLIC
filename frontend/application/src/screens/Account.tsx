@@ -7,6 +7,7 @@ import {SafeAreaView} from "react-native-safe-area-context";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {orange, green} from "../styles/colors";
 import {TouchableOpacity} from "react-native";
+import {userInfo} from "./Main";
 
 export function AccountScreen() {
     return (
@@ -23,8 +24,9 @@ export function AccountScreen() {
                 ]}>
                 <View style={{flexDirection: "row"}}>
                     <Avatar.Image
-                        source={require("../../assets/images/user_avatar.png")}
+                        source={require("../../assets/images/user1.png")}
                         size={80}
+                        style={{backgroundColor: "white"}}
                     />
                     <View style={{marginLeft: 15}}>
                         <Title
@@ -34,7 +36,7 @@ export function AccountScreen() {
                                     marginTop: 15,
                                 },
                             ]}>
-                            Vincent Delarue
+                            {userInfo.nickname}
                         </Title>
                         <Caption style={texts.caption_text}>
                             Envie de sortir!
@@ -57,7 +59,7 @@ export function AccountScreen() {
                             color="#777777"
                             size={20}></Ionicons>
                         <Text style={[texts.caption_text, {marginLeft: 15}]}>
-                            vincent_dlr@gmail.com
+                            {userInfo.email}
                         </Text>
                     </View>
                 </View>

@@ -1,77 +1,66 @@
-import React, {useEffect, useRef, useState} from "react";
-import {Alert, Text, View} from "react-native";
+import React, {useEffect, useRef, useState, useCallback} from "react";
+import {Alert, Text, View, StyleSheet, Button} from "react-native";
 import {FlatList} from "react-native-gesture-handler";
-import {TextInput} from "react-native-paper";
+import {List, TextInput} from "react-native-paper";
+import {container} from "../styles/bases";
 import SocketIOClient from "socket.io-client";
+import {ListItem, Avatar} from "@rneui/themed";
+import {GiftedChat} from "react-native-gifted-chat";
+import {userInfo} from "./Main";
 
 export function ConversationScreen() {
-    const [messages, setMessages] = useState([String, String]);
+    const [messages, setMessages] = useState<any[]>([]);
 
-    const [text, onChangeText] = useState("");
-
+    const socketRef = SocketIOClient("ws://bal-app-test.herokuapp.com", {
+        transports: ["websocket"], // you need to explicitly tell it to use websockets
+    });
     useEffect(() => {
-        const socketRef = SocketIOClient("192.168.3.110:3001", {
-            transports: ["websocket"], // you need to explicitly tell it to use websockets
+        socketRef.on("message", response => {
+            var sentMessages = {
+                _id: "2",
+                text: response.message,
+                createdAt: new Date(),
+                user: {
+                    _id: response.name,
+                    name: response.name,
+                },
+            };
+            if (response.name != userInfo.nickname) {
+                setMessages(previousMessages =>
+                    GiftedChat.append(previousMessages, sentMessages),
+                );
+            }
         });
-
         socketRef.on("connect_error", (err: {message: any}) => {
             console.log(err);
         });
-        console.log("outside");
         return () => {
             socketRef.disconnect();
         };
-    }, [messages]);
+    }, []);
 
-    const onSubmitHandler = () => {
-        console.log("onSubmitHandler function");
-        // socketRef.emit(
-        //     "createMessage",
-        //     {name: "Emma", message: "Aled"},
-        //     (response: any) => {
-        //         console.log(response);
-        //     },
-        // );
-        console.log("outside");
-        onChangeText("");
-    };
-
-    /////**************************************////
-    const DATA = [
-        {
-            id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-            title: "First Item",
-        },
-        {
-            id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-            title: "Second Item",
-        },
-        {
-            id: "58694a0f-3da1-471f-bd96-145571e29d72",
-            title: "Third Item",
-        },
-    ];
-
-    const Item = ({title}) => (
-        <View
-            style={{
-                backgroundColor: "#f9c2ff",
-                padding: 20,
-                marginVertical: 8,
-                marginHorizontal: 16,
-            }}>
-            <Text style={{fontSize: 32}}>{title}</Text>
-        </View>
-    );
-
-    const renderItem = ({item}) => <Item title={item.title} />;
-
+    const onSend = useCallback((messages = []) => {
+        console.log(messages);
+        socketRef.emit(
+            "createMessage",
+            {name: userInfo.nickname, message: messages[0].text},
+            response => {
+                console.log(response);
+            },
+        );
+        setMessages(previousMessages =>
+            GiftedChat.append(previousMessages, messages),
+        );
+    }, []);
     return (
-        <View>
-            <FlatList
-                data={messages}
-                renderItem={renderItem}
-                keyExtractor={item => item.id}
+        <View style={container.simple_flex1}>
+            <GiftedChat
+                messages={messages}
+                onSend={messages => onSend(messages)}
+                user={{
+                    _id: userInfo.nickname,
+                    name: userInfo.nickname,
+                }}
             />
         </View>
     );
