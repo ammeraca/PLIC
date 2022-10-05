@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState, useCallback} from "react";
-import {Alert, Text, View, StyleSheet, Button} from "react-native";
+import {Alert, Text, View, StyleSheet, Button, LogBox} from "react-native";
 import {FlatList} from "react-native-gesture-handler";
 import {List, TextInput} from "react-native-paper";
 import {container} from "../styles/bases";
@@ -9,6 +9,8 @@ import {GiftedChat} from "react-native-gifted-chat";
 import {userInfo} from "./Main";
 
 export function ConversationScreen() {
+    LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
+    LogBox.ignoreAllLogs(); //Ignore all log notifications
     const [messages, setMessages] = useState<any[]>([]);
 
     const socketRef = SocketIOClient("ws://bal-app-test.herokuapp.com", {
