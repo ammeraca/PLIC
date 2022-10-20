@@ -3,13 +3,14 @@ import {useState} from "react";
 import {SafeAreaView, TouchableOpacity, View, Text} from "react-native";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
+import {library} from "@fortawesome/fontawesome-svg-core";
+import {fab} from "@fortawesome/free-brands-svg-icons";
 
 import {NavigationContainer} from "@react-navigation/native";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 
-import {AccountScreen, AccountStackScreens} from "./src/screens/Account";
-import {ConversationScreen} from "./src/screens/Conversations";
+import {AccountStackScreens} from "./src/screens/Account";
 import {MainScreen} from "./src/screens/Main";
 import {PuzzleScreen} from "./src/screens/Puzzles";
 import {SettingsScreen} from "./src/screens/Settings";
@@ -17,7 +18,7 @@ import {ConversationStackScreen} from "./src/screens/Conversations";
 import UnityScreen from "./src/screens/Unity";
 
 import {container} from "./src/styles/bases";
-import {titles, texts} from "./src/styles/texts";
+import {texts} from "./src/styles/texts";
 
 import Auth0 from "react-native-auth0";
 import {green} from "./src/styles/colors";
