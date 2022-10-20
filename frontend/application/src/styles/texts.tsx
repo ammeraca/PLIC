@@ -40,6 +40,12 @@ export const texts = StyleSheet.create({
         fontSize: 35,
         marginHorizontal: 10,
     },
+    riddle_name_text: {
+        fontFamily: "Montserrat-Bold",
+        color: "#333333",
+        fontSize: 20,
+        marginTop: 20,
+    },
     button_text: {
         fontFamily: "Montserrat-Medium",
         color: "white",

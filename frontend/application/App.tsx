@@ -3,8 +3,6 @@ import {useState} from "react";
 import {SafeAreaView, TouchableOpacity, View, Text} from "react-native";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
-import {library} from "@fortawesome/fontawesome-svg-core";
-import {fab} from "@fortawesome/free-brands-svg-icons";
 
 import {NavigationContainer} from "@react-navigation/native";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
@@ -39,7 +37,6 @@ export type RootTabParamList = {
 export var token = "";
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
-const AccountStack = createNativeStackNavigator();
 
 // authentification at https://reactnavigation.org/docs/auth-flow
 export default function App() {
@@ -110,7 +107,15 @@ export default function App() {
                                 );
                             },
                             tabBarActiveTintColor: "#f4ad00",
-                            tabBarInactiveTintColor: "gray",
+                            tabBarInactiveTintColor: "#8E8E92",
+                            tabBarStyle: {
+                                padding: 5,
+                                height: 55,
+                            },
+                            tabBarLabelStyle: {
+                                fontSize: 11,
+                                fontWeight: "bold",
+                            },
                         })}>
                         <Tab.Screen
                             name="Accueil"
