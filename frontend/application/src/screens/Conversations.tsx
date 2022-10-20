@@ -1,67 +1,136 @@
-import React, {useEffect, useRef, useState, useCallback} from "react";
-import {Alert, Text, View, StyleSheet, Button} from "react-native";
+import React, {useEffect, useState, useCallback, useRef} from "react";
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import {
+    Alert,
+    Text,
+    View,
+    StyleSheet,
+    Button,
+    TouchableOpacity,
+} from "react-native";
 import {FlatList} from "react-native-gesture-handler";
-import {List, TextInput} from "react-native-paper";
 import {container} from "../styles/bases";
-import SocketIOClient from "socket.io-client";
+import {texts} from "../styles/texts";
 import {ListItem, Avatar} from "@rneui/themed";
-import {GiftedChat} from "react-native-gifted-chat";
-import {userInfo} from "./Main";
+import {SafeAreaView} from "react-native-safe-area-context";
+import {getGroups} from "../components/back";
+import {MessagesScreen} from "./Messages";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import {SearchBar} from "@rneui/themed";
 
-export function ConversationScreen() {
-    const [messages, setMessages] = useState<any[]>([]);
+const ConversationStack = createNativeStackNavigator();
 
-    const socketRef = SocketIOClient("ws://bal-app-test.herokuapp.com", {
-        transports: ["websocket"], // you need to explicitly tell it to use websockets
-    });
-    useEffect(() => {
-        socketRef.on("message", response => {
-            var sentMessages = {
-                _id: "2",
-                text: response.message,
-                createdAt: new Date(),
-                user: {
-                    _id: response.name,
-                    name: response.name,
-                },
-            };
-            if (response.name != userInfo.nickname) {
-                setMessages(previousMessages =>
-                    GiftedChat.append(previousMessages, sentMessages),
-                );
-            }
-        });
-        socketRef.on("connect_error", (err: {message: any}) => {
-            console.log(err);
-        });
-        return () => {
-            socketRef.disconnect();
-        };
-    }, []);
-
-    const onSend = useCallback((messages = []) => {
-        console.log(messages);
-        socketRef.emit(
-            "createMessage",
-            {name: userInfo.nickname, message: messages[0].text},
-            response => {
-                console.log(response);
-            },
-        );
-        setMessages(previousMessages =>
-            GiftedChat.append(previousMessages, messages),
-        );
-    }, []);
+export function ConversationStackScreen() {
     return (
-        <View style={container.simple_flex1}>
-            <GiftedChat
-                messages={messages}
-                onSend={messages => onSend(messages)}
-                user={{
-                    _id: userInfo.nickname,
-                    name: userInfo.nickname,
+        <ConversationStack.Navigator>
+            <ConversationStack.Screen
+                name="ConversationsStack"
+                component={ConversationScreen}
+                options={{
+                    title: "Conversations",
+                    headerTitleStyle: {
+                        fontFamily: "Montserrat-Bold",
+                    },
+                    headerTitleAlign: "center",
+                    headerShadowVisible: false,
+                    headerLeft: () => (
+                        <TouchableOpacity>
+                            <View>
+                                <Text style={[texts.termine_text]}>
+                                    Modifier
+                                </Text>
+                            </View>
+                        </TouchableOpacity>
+                    ),
+                    headerRight: () => (
+                        <TouchableOpacity>
+                            <Ionicons name="pencil" color="#46a233" size={30} />
+                        </TouchableOpacity>
+                    ),
                 }}
             />
-        </View>
+            <ConversationStack.Screen
+                name="Messages"
+                component={MessagesScreen}
+                options={{
+                    title: "",
+                }}
+            />
+        </ConversationStack.Navigator>
+    );
+}
+
+function extractGroupList(groups) {
+    const result = [];
+    for (let index = 0; index < groups.length; index++) {
+        const element = groups[index];
+        var group = {
+            id: element.id,
+            name: element.name,
+            avatar: "../../assets/images/user1.png",
+            subtitle: "last Message",
+        };
+        result.push(group);
+    }
+    return result;
+}
+
+export function ConversationScreen({navigation}) {
+    const [groups, setGroups] = useState<object[]>([]);
+    useEffect(() => {
+        getGroups(setGroups);
+    }, []);
+    //ListItem
+    const list = extractGroupList(groups);
+    const keyExtractor = (item, index) => index.toString();
+
+    const renderItem = ({item}) => (
+        <ListItem bottomDivider>
+            <Avatar //source={{uri: item.avatar_url}}
+                source={require("../../assets/images/user1.png")}
+            />
+            <TouchableOpacity
+                onPress={() =>
+                    navigation.navigate("Messages", {GroupID: item.id})
+                }>
+                <ListItem.Content>
+                    <ListItem.Title>{item.name}</ListItem.Title>
+                    <ListItem.Subtitle>{item.subtitle}</ListItem.Subtitle>
+                </ListItem.Content>
+            </TouchableOpacity>
+        </ListItem>
+    );
+
+    const [search, setSearch] = useState("");
+
+    const updateSearch = search => {
+        setSearch(search);
+    };
+
+    return (
+        <SafeAreaView style={container.main}>
+            <SearchBar
+                lightTheme
+                round
+                containerStyle={{
+                    backgroundColor: "white",
+                    borderWidth: 0,
+                    borderBottomColor: "transparent",
+                    borderTopColor: "transparent",
+                }}
+                inputContainerStyle={{backgroundColor: "lightgray", height: 30}}
+                inputStyle={{fontSize: 16}}
+                placeholder="Type Here..."
+                onChangeText={updateSearch}
+                value={search}
+            />
+            <View style={container.simple_flex1}>
+                <FlatList
+                    keyExtractor={keyExtractor}
+                    data={list}
+                    renderItem={renderItem}
+                />
+            </View>
+        </SafeAreaView>
     );
 }

@@ -6,20 +6,21 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 import {NavigationContainer} from "@react-navigation/native";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
 
-import {AccountScreen} from "./src/screens/Account";
+import {AccountScreen, AccountStackScreens} from "./src/screens/Account";
 import {ConversationScreen} from "./src/screens/Conversations";
 import {MainScreen} from "./src/screens/Main";
 import {PuzzleScreen} from "./src/screens/Puzzles";
 import {SettingsScreen} from "./src/screens/Settings";
+import {ConversationStackScreen} from "./src/screens/Conversations";
 import UnityScreen from "./src/screens/Unity";
 
 import {container} from "./src/styles/bases";
-import {texts} from "./src/styles/texts";
+import {titles, texts} from "./src/styles/texts";
 
 import Auth0 from "react-native-auth0";
 import {green} from "./src/styles/colors";
-import {Image} from "@rneui/base";
 
 export const auth0 = new Auth0({
     domain: "dev-2hywfoly.us.auth0.com",
@@ -37,6 +38,7 @@ export type RootTabParamList = {
 export var token = "";
 
 const Tab = createBottomTabNavigator<RootTabParamList>();
+const AccountStack = createNativeStackNavigator();
 
 // authentification at https://reactnavigation.org/docs/auth-flow
 export default function App() {
@@ -123,7 +125,7 @@ export default function App() {
                         />
                         <Tab.Screen
                             name="Conversations"
-                            component={ConversationScreen}
+                            component={ConversationStackScreen}
                             options={{
                                 tabBarBadge: 3,
                                 headerShown: false,
@@ -131,7 +133,7 @@ export default function App() {
                         />
                         <Tab.Screen
                             name="Compte"
-                            component={AccountScreen}
+                            component={AccountStackScreens}
                             options={{headerShown: false}}
                         />
                         <Tab.Screen

@@ -22,6 +22,7 @@ type Props = {
 export var userInfo = {};
 
 export function MainScreen({navigation}: Props) {
+    // Ici on récupère les informations de l'utilisateur vu que l'on passe tjrs par cette page
     const [info, setInfo] = useState(Object);
     useEffect(() => {
         auth0.auth

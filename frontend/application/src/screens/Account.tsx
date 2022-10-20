@@ -1,15 +1,69 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {View, Text} from "react-native";
 import {container} from "../styles/bases";
 import {titles, texts} from "../styles/texts";
 import {Avatar, Caption, Title} from "react-native-paper";
 import {SafeAreaView} from "react-native-safe-area-context";
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {orange, green} from "../styles/colors";
 import {TouchableOpacity} from "react-native";
 import {userInfo} from "./Main";
+import {EditProfileScreen} from "./EditProfile";
+import {getUser, updateUser} from "../components/back";
 
-export function AccountScreen() {
+const AccountStack = createNativeStackNavigator();
+
+export function AccountStackScreens({navigation}) {
+    return (
+        <AccountStack.Navigator>
+            <AccountStack.Screen
+                name="Account"
+                component={AccountScreen}
+                options={{headerShown: false}}
+            />
+            <AccountStack.Screen
+                name="EditProfile"
+                component={EditProfileScreen}
+                options={{
+                    title: "",
+                    headerShadowVisible: false,
+                    headerTintColor: "#46a233",
+                    headerRight: () => (
+                        <TouchableOpacity
+                            onPress={() => {
+                                updateUser();
+                                navigation.navigate("Account");
+                            }}>
+                            <View>
+                                <Text style={[texts.termine_text]}>
+                                    Terminé
+                                </Text>
+                            </View>
+                        </TouchableOpacity>
+                    ),
+                }}
+            />
+        </AccountStack.Navigator>
+    );
+}
+
+export const StateUser = {
+    id: "3",
+    username: "Maridiyath",
+    email: "bmaridiyath01@gmail.com",
+    location: "KB, France",
+    description: "Sortir !!",
+};
+
+export function AccountScreen({navigation}) {
+    const [user, setUser] = useState("");
+    useEffect(() => {
+        getUser(setUser);
+        navigation.addListener("focus", () => {
+            getUser(setUser);
+        });
+    }, [navigation]);
     return (
         <SafeAreaView style={container.main}>
             <View style={container.simple_center_flex1}>
@@ -24,7 +78,10 @@ export function AccountScreen() {
                 ]}>
                 <View style={{flexDirection: "row"}}>
                     <Avatar.Image
-                        source={require("../../assets/images/user1.png")}
+                        //source={require("../../assets/images/user1.png")}
+                        source={{
+                            uri: userInfo.picture,
+                        }}
                         size={80}
                         style={{backgroundColor: "white"}}
                     />
@@ -36,10 +93,10 @@ export function AccountScreen() {
                                     marginTop: 15,
                                 },
                             ]}>
-                            {userInfo.nickname}
+                            {/*userInfo.nickname*/ user.username}
                         </Title>
                         <Caption style={texts.caption_text}>
-                            Envie de sortir!
+                            {user.description}
                         </Caption>
                     </View>
                 </View>
@@ -50,7 +107,7 @@ export function AccountScreen() {
                             color="#777777"
                             size={20}></Ionicons>
                         <Text style={[texts.caption_text, {marginLeft: 15}]}>
-                            Kremlin-Bicêtre, France
+                            {user.location}
                         </Text>
                     </View>
                     <View style={container.row}>
@@ -91,7 +148,7 @@ export function AccountScreen() {
                             container.account_touchable,
                             container.accountMenuItem,
                         ]}
-                        onPress={() => {}}>
+                        onPress={() => navigation.navigate("EditProfile")}>
                         <Ionicons
                             name="person"
                             color="#f4ad00"

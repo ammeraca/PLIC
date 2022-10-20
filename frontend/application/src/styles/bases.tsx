@@ -74,6 +74,14 @@ export const container = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
     },
+    editAccountPanel: {
+        flexDirection: "row",
+        marginTop: 10,
+        marginBottom: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: "#f2f2f2",
+        paddingBottom: 5,
+    },
     accountMenuItem: {
         flexDirection: "row",
         paddingVertical: 15,

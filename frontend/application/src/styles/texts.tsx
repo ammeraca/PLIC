@@ -50,4 +50,9 @@ export const texts = StyleSheet.create({
         fontSize: 14,
         color: "gray",
     },
+    termine_text: {
+        fontFamily: "Montserrat-Bold",
+        color: "#46a233",
+        fontSize: 16,
+    },
 });
