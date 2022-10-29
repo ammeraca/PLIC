@@ -6,11 +6,10 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 import {NavigationContainer} from "@react-navigation/native";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
-import {createNativeStackNavigator} from "@react-navigation/native-stack";
 
 import {AccountStackScreens} from "./src/screens/Account";
 import {MainScreen} from "./src/screens/Main";
-import {PuzzleScreen} from "./src/screens/Puzzles";
+import {PuzzleStackScreens} from "./src/screens/Puzzles";
 import {SettingsScreen} from "./src/screens/Settings";
 import {ConversationStackScreen} from "./src/screens/Conversations";
 import UnityScreen from "./src/screens/Unity";
@@ -124,7 +123,7 @@ export default function App() {
                         />
                         <Tab.Screen
                             name="Puzzles"
-                            component={PuzzleScreen}
+                            component={PuzzleStackScreens}
                             options={{
                                 headerShown: false,
                             }}

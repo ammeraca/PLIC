@@ -5,13 +5,20 @@ import {
     faSpinner,
     faLock,
 } from "@fortawesome/free-solid-svg-icons";
-import {StyleSheet, View, Text, TouchableOpacity} from "react-native";
+import {
+    StyleSheet,
+    View,
+    Text,
+    TouchableOpacity,
+    Dimensions,
+} from "react-native";
 import {green, orange} from "../styles/colors";
 import {texts} from "../styles/texts";
 
 export default function EnigmeCard(props) {
     let iconElm;
-    if (props.status === "Finished") {
+    let card;
+    if (props.enigme.status === "Finished") {
         iconElm = (
             <FontAwesomeIcon
                 icon={faCircleCheck}
@@ -20,7 +27,7 @@ export default function EnigmeCard(props) {
                     green.background_principal.backgroundColor
                 }></FontAwesomeIcon>
         );
-    } else if (props.status === "InProgress") {
+    } else if (props.enigme.status === "InProgress") {
         iconElm = (
             <FontAwesomeIcon
                 icon={faSpinner}
@@ -37,23 +44,39 @@ export default function EnigmeCard(props) {
                 color="#8E8E92"></FontAwesomeIcon>
         );
     }
+    if (props.enigme.status === "Blocked") {
+        card = <View style={styles.filter}></View>;
+    } else {
+        card = <View></View>;
+    }
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.touchableContainer}>
+            <TouchableOpacity
+                style={styles.touchableContainer}
+                onPress={() =>
+                    props.navigation.navigate("EnigmePage", {
+                        title: props.enigme.name,
+                    })
+                }>
                 {iconElm}
-                <Text style={[texts.riddle_name_text]}>{props.enigmeName}</Text>
+                <Text style={[texts.riddle_name_text]}>
+                    {props.enigme.name}
+                </Text>
             </TouchableOpacity>
+            {card}
         </View>
     );
 }
 
+const numColumns = 2;
+const size = Dimensions.get("window").width / numColumns;
 const styles = StyleSheet.create({
     container: {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        width: 150,
-        height: 170,
+        width: size - 30,
+        height: size,
         backgroundColor: "white",
         borderRadius: 10,
         shadowColor: "rgba(0,0,0,0.7)",
@@ -64,6 +87,7 @@ const styles = StyleSheet.create({
         shadowRadius: 5,
         shadowOpacity: 1.0,
         elevation: 10,
+        margin: 10,
     },
     touchableContainer: {
         width: "100%",
@@ -72,5 +96,16 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+    },
+    filter: {
+        position: "absolute",
+        top: 0,
+        right: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        borderRadius: 10,
+        opacity: 0.6,
+        backgroundColor: "#8E8E92",
     },
 });

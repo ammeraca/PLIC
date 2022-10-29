@@ -1,5 +1,4 @@
 import React from "react";
-import {SafeAreaView} from "react-native-safe-area-context";
 import {
     View,
     Text,
@@ -7,6 +6,7 @@ import {
     ImageBackground,
     TextInput,
     Platform,
+    SafeAreaView,
 } from "react-native";
 import {container} from "../styles/bases";
 import Ionicons from "react-native-vector-icons/Ionicons";

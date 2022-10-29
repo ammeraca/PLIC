@@ -44,7 +44,7 @@ export const texts = StyleSheet.create({
         fontFamily: "Montserrat-Bold",
         color: "#333333",
         fontSize: 20,
-        marginTop: 20,
+        marginTop: 30,
     },
     button_text: {
         fontFamily: "Montserrat-Medium",
@@ -60,5 +60,10 @@ export const texts = StyleSheet.create({
         fontFamily: "Montserrat-Bold",
         color: "#46a233",
         fontSize: 16,
+    },
+    enigme_title: {
+        fontFamily: "Montserrat-Bold",
+        color: "#f4ad00",
+        fontSize: 40,
     },
 });

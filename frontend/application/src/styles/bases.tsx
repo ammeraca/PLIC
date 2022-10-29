@@ -105,6 +105,16 @@ export const container = StyleSheet.create({
         borderRightWidth: 1,
         borderRadius: 5,
     },
+
+    enigme_view: {
+        flex: 0.9,
+        justifyContent: "center",
+    },
+    enigme_title_view: {
+        flex: 0.1,
+        justifyContent: "center",
+        alignItems: "center",
+    },
 });
 
 export const buttons = StyleSheet.create({});

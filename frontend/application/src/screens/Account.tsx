@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from "react";
-import {View, Text} from "react-native";
+import {View, Text, SafeAreaView} from "react-native";
 import {container} from "../styles/bases";
 import {titles, texts} from "../styles/texts";
 import {Avatar, Caption, Title} from "react-native-paper";
-import {SafeAreaView} from "react-native-safe-area-context";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import {orange, green} from "../styles/colors";
