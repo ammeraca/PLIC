@@ -34,12 +34,6 @@ export const texts = StyleSheet.create({
         color: "#333333",
         fontSize: 16,
     },
-    riddle_text: {
-        fontFamily: "Montserrat-Medium",
-        color: "#333333",
-        fontSize: 35,
-        marginHorizontal: 10,
-    },
     riddle_name_text: {
         fontFamily: "Montserrat-Bold",
         color: "#333333",
@@ -47,9 +41,9 @@ export const texts = StyleSheet.create({
         marginTop: 30,
     },
     button_text: {
-        fontFamily: "Montserrat-Medium",
+        fontFamily: "Montserrat-Bold",
         color: "white",
-        fontSize: 20,
+        fontSize: 25,
     },
     caption_text: {
         fontFamily: "Montserrat-Medium",
@@ -65,5 +59,18 @@ export const texts = StyleSheet.create({
         fontFamily: "Montserrat-Bold",
         color: "#f4ad00",
         fontSize: 40,
+    },
+    /* Enigme Page */
+    enigme_page_main_text: {
+        fontFamily: "Montserrat-Bold",
+        color: "#46a233",
+        fontSize: 25,
+        textAlign: "center",
+    },
+    enigme_text: {
+        fontFamily: "Montserrat-Medium",
+        color: "#333333",
+        fontSize: 18,
+        textAlign: "center",
     },
 });

@@ -26,7 +26,7 @@ export function PuzzleStackScreens() {
                 name="EnigmePage"
                 component={EnigmePageScreen}
                 options={{
-                    headerShadowVisible: false,
+                    //headerShadowVisible: false,
                     headerTitleAlign: "center",
                     headerTitleStyle: {
                         fontFamily: "Montserrat-Bold",
@@ -50,11 +50,11 @@ const data = [
         status: "InProgress",
         text: "Je suis situé dans le 1er arrondissement de Paris. Mon bâtiment est un ancien palais royal. Mes deux statues les plus célèbres sont la Vénus de Milo, et la Victoire de Samothrace. Je suis le plus grand musée de Paris. En 1989, la construction d’une nouvelle entrée en forme de pyramide transforme mon aspect extérieur.",
     },
-    {name: "Enigme 3", status: "Blocked"},
-    {name: "Enigme 4", status: "Blocked"},
-    {name: "Enigme 5", status: "Blocked"},
-    {name: "Enigme 6", status: "Blocked"},
-    {name: "Enigme 7", status: "Blocked"},
+    {name: "Enigme 3", status: "Blocked", text: ""},
+    {name: "Enigme 4", status: "Blocked", text: ""},
+    {name: "Enigme 5", status: "Blocked", text: ""},
+    {name: "Enigme 6", status: "Blocked", text: ""},
+    {name: "Enigme 7", status: "Blocked", text: ""},
 ];
 
 export function PuzzleScreen({navigation}) {

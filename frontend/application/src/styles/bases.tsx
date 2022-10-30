@@ -1,5 +1,5 @@
 import {Dimensions, StyleSheet} from "react-native";
-
+const size = Dimensions.get("window").width;
 export const container = StyleSheet.create({
     main: {
         flex: 1,
@@ -114,6 +114,23 @@ export const container = StyleSheet.create({
         flex: 0.1,
         justifyContent: "center",
         alignItems: "center",
+    },
+    /* EnigmePage Styles */
+    enigme_page_view: {
+        flex: 1,
+        width: size - 50,
+        height: "auto",
+        backgroundColor: "white",
+        borderRadius: 15,
+        borderColor: "#333333",
+        shadowColor: "rgba(0,0,0,0.5)",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowRadius: 5,
+        shadowOpacity: 1.0,
+        elevation: 10,
     },
 });
 

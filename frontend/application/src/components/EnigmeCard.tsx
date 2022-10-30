@@ -56,6 +56,7 @@ export default function EnigmeCard(props) {
                 onPress={() =>
                     props.navigation.navigate("EnigmePage", {
                         title: props.enigme.name,
+                        enigme_txt: props.enigme.text,
                     })
                 }>
                 {iconElm}
