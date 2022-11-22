@@ -3,7 +3,7 @@ import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {Text, View, TouchableOpacity, FlatList} from "react-native";
 import {container} from "../styles/bases";
 import {texts} from "../styles/texts";
-import {ListItem, Avatar} from "@rneui/themed";
+import {ListItem} from "@rneui/themed";
 import {SafeAreaView} from "react-native-safe-area-context";
 import {getGroups} from "../components/back";
 import {MessagesScreen} from "./Messages";
@@ -11,6 +11,8 @@ import {SearchBar} from "@rneui/themed";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 import {faPenToSquare, faCircleUser} from "@fortawesome/free-solid-svg-icons";
 import {green} from "../styles/colors";
+import {NewDiscussionsScreen} from "./NewDiscussions";
+import {ListDesGroupesScreen} from "./ListDesGroupes";
 
 const ConversationStack = createNativeStackNavigator();
 
@@ -30,6 +32,31 @@ export function ConversationStackScreen() {
                 component={MessagesScreen}
                 options={{
                     title: "",
+                }}
+            />
+            <ConversationStack.Screen
+                name="NewDiscussions"
+                component={NewDiscussionsScreen}
+                options={{
+                    title: "Nouv.discussion",
+                    headerTitleAlign: "center",
+                    headerTitleStyle: {
+                        fontFamily: "Montserrat-Bold",
+                        fontSize: 20,
+                    },
+                    headerTintColor: "#f4ad00",
+                }}
+            />
+            <ConversationStack.Screen
+                name="ListDesGroupes"
+                component={ListDesGroupesScreen}
+                options={{
+                    headerTitleAlign: "center",
+                    headerTitleStyle: {
+                        fontFamily: "Montserrat-Bold",
+                        fontSize: 20,
+                    },
+                    headerTintColor: green.background_principal.backgroundColor,
                 }}
             />
         </ConversationStack.Navigator>
@@ -79,9 +106,6 @@ export function ConversationScreen({navigation}) {
 
     const renderItem = ({item}) => (
         <ListItem bottomDivider>
-            {/*<Avatar //source={{uri: item.avatar_url}}
-                source={require("../../assets/images/user1.png")}
-    />*/}
             <FontAwesomeIcon icon={faCircleUser} size={60} color={item.color} />
             <TouchableOpacity
                 onPress={() =>
@@ -138,7 +162,8 @@ export function ConversationScreen({navigation}) {
                     onChangeText={updateSearch}
                     value={search}
                 />
-                <TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate("NewDiscussions")}>
                     <FontAwesomeIcon
                         icon={faPenToSquare}
                         size={30}
