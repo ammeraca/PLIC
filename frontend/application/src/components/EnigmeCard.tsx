@@ -23,26 +23,19 @@ export default function EnigmeCard(props) {
             <FontAwesomeIcon
                 icon={faCircleCheck}
                 size={60}
-                color={
-                    green.background_principal.backgroundColor
-                }></FontAwesomeIcon>
+                color={green.background_principal.backgroundColor}
+            />
         );
     } else if (props.enigme.status === "InProgress") {
         iconElm = (
             <FontAwesomeIcon
                 icon={faSpinner}
                 size={60}
-                color={
-                    orange.background_principal.backgroundColor
-                }></FontAwesomeIcon>
+                color={orange.background_principal.backgroundColor}
+            />
         );
     } else {
-        iconElm = (
-            <FontAwesomeIcon
-                icon={faLock}
-                size={60}
-                color="#8E8E92"></FontAwesomeIcon>
-        );
+        iconElm = <FontAwesomeIcon icon={faLock} size={60} color="#8E8E92" />;
     }
     if (props.enigme.status === "Blocked") {
         card = <View style={styles.filter}></View>;
@@ -54,10 +47,14 @@ export default function EnigmeCard(props) {
             <TouchableOpacity
                 style={styles.touchableContainer}
                 onPress={() =>
-                    props.navigation.navigate("EnigmePage", {
-                        title: props.enigme.name,
-                        enigme_txt: props.enigme.text,
-                    })
+                    props.enigme.status === "InProgress"
+                        ? props.navigation.navigate("EnigmePage", {
+                              title: props.enigme.name,
+                              enigme_txt: props.enigme.text,
+                          })
+                        : props.navigation.navigate("SuccessPage", {
+                              title: props.enigme.name,
+                          })
                 }>
                 {iconElm}
                 <Text style={[texts.riddle_name_text]}>

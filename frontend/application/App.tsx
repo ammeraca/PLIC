@@ -1,6 +1,12 @@
 import * as React from "react";
 import {useState} from "react";
-import {SafeAreaView, TouchableOpacity, View, Text} from "react-native";
+import {
+    SafeAreaView,
+    TouchableOpacity,
+    View,
+    Text,
+    Dimensions,
+} from "react-native";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
 
@@ -19,11 +25,14 @@ import {texts} from "./src/styles/texts";
 
 import Auth0 from "react-native-auth0";
 import {green} from "./src/styles/colors";
+import LoginLogoAndText from "./src/components/LoginLogoAndText";
 
 export const auth0 = new Auth0({
     domain: "dev-2hywfoly.us.auth0.com",
     clientId: "tHcYwkoXb5joD3831R0j076CIWzIbyqJ",
 });
+
+const size = Dimensions.get("window").width;
 
 export type RootTabParamList = {
     Accueil: undefined; // undefined because you aren't passing any params to the home screen
@@ -55,16 +64,61 @@ export default function App() {
     return (
         <SafeAreaView style={container.main}>
             {!accessToken ? (
-                <View style={container.main_login_screen}>
-                    <TouchableOpacity
-                        onPress={() => {
-                            handleLoginPress();
-                        }}
-                        style={[green.background_principal, container.button]}>
-                        <View>
-                            <Text style={texts.button_text}>Login</Text>
+                <View style={container.main}>
+                    <LoginLogoAndText></LoginLogoAndText>
+                    <View
+                        style={{
+                            justifyContent: "center",
+                            alignItems: "center",
+                            marginTop: 40,
+                        }}>
+                        <TouchableOpacity
+                            onPress={() => {
+                                handleLoginPress();
+                            }}
+                            style={[
+                                green.background_principal,
+                                container.simple_shadows,
+                                {
+                                    borderRadius: 7,
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    width: size - 60,
+                                    paddingTop: 10,
+                                    paddingBottom: 10,
+                                },
+                            ]}>
+                            <View>
+                                <Text style={texts.button_text}>
+                                    Se connecter
+                                </Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <View
+                        style={{
+                            width: "100%",
+                            position: "absolute",
+                            bottom: 20,
+                        }}>
+                        <View
+                            style={{
+                                width: "100%",
+                                flexDirection: "row",
+                                justifyContent: "center",
+                                alignItems: "center",
+                            }}>
+                            <Text style={texts.not_account_text}>
+                                Pas de compte?
+                            </Text>
+                            <TouchableOpacity>
+                                <Text style={texts.signUp_text}>
+                                    {" "}
+                                    S'inscrire
+                                </Text>
+                            </TouchableOpacity>
                         </View>
-                    </TouchableOpacity>
+                    </View>
                 </View>
             ) : (
                 <NavigationContainer>

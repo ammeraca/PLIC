@@ -1,14 +1,12 @@
-import {useRoute} from "@react-navigation/native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import React, {useState, useEffect} from "react";
 import {View, Text, SafeAreaView, FlatList} from "react-native";
-import {TouchableOpacity} from "react-native";
-import {getRiddle} from "../components/back";
 import EnigmeCard from "../components/EnigmeCard";
+import GroupModal from "../components/GroupModal";
 import {container} from "../styles/bases";
-import {green, orange} from "../styles/colors";
-import {texts, titles} from "../styles/texts";
+import {texts} from "../styles/texts";
 import {EnigmePageScreen} from "./EnigmePage";
+import SucessPageScreen from "./SuccessPage";
 
 export var riddleIdentifier: string = "1";
 
@@ -26,7 +24,18 @@ export function PuzzleStackScreens() {
                 name="EnigmePage"
                 component={EnigmePageScreen}
                 options={{
-                    //headerShadowVisible: false,
+                    headerTitleAlign: "center",
+                    headerTitleStyle: {
+                        fontFamily: "Montserrat-Bold",
+                        fontSize: 20,
+                    },
+                    headerTintColor: "#f4ad00",
+                }}
+            />
+            <PuzzleStack.Screen
+                name="SuccessPage"
+                component={SucessPageScreen}
+                options={{
                     headerTitleAlign: "center",
                     headerTitleStyle: {
                         fontFamily: "Montserrat-Bold",
@@ -43,7 +52,7 @@ const data = [
     {
         name: "Enigme 1",
         status: "Finished",
-        text: "Je suis situé dans le 1er arrondissement de Paris. Mon bâtiment est un ancien palais royal. Mes deux statues les plus célèbres sont la Vénus de Milo, et la Victoire de Samothrace. Je suis le plus grand musée de Paris. En 1989, la construction d’une nouvelle entrée en forme de pyramide transforme mon aspect extérieur.",
+        text: "",
     },
     {
         name: "Enigme 2",
@@ -67,6 +76,7 @@ export function PuzzleScreen({navigation}) {
         <SafeAreaView style={container.main}>
             <View style={container.enigme_title_view}>
                 <Text style={texts.enigme_title}>PUZZLES</Text>
+                <GroupModal></GroupModal>
             </View>
             <View style={container.enigme_view}>
                 <FlatList

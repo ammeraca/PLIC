@@ -1,22 +1,16 @@
 import React, {useEffect, useState, useCallback, useRef} from "react";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
-import {
-    Alert,
-    Text,
-    View,
-    StyleSheet,
-    Button,
-    TouchableOpacity,
-} from "react-native";
-import {FlatList} from "react-native-gesture-handler";
+import {Text, View, TouchableOpacity, FlatList} from "react-native";
 import {container} from "../styles/bases";
 import {texts} from "../styles/texts";
 import {ListItem, Avatar} from "@rneui/themed";
 import {SafeAreaView} from "react-native-safe-area-context";
 import {getGroups} from "../components/back";
 import {MessagesScreen} from "./Messages";
-import Ionicons from "react-native-vector-icons/Ionicons";
 import {SearchBar} from "@rneui/themed";
+import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
+import {faPenToSquare, faCircleUser} from "@fortawesome/free-solid-svg-icons";
+import {green} from "../styles/colors";
 
 const ConversationStack = createNativeStackNavigator();
 
@@ -28,25 +22,7 @@ export function ConversationStackScreen() {
                 component={ConversationScreen}
                 options={{
                     title: "Conversations",
-                    headerTitleStyle: {
-                        fontFamily: "Montserrat-Bold",
-                    },
-                    headerTitleAlign: "center",
-                    headerShadowVisible: false,
-                    headerLeft: () => (
-                        <TouchableOpacity>
-                            <View>
-                                <Text style={[texts.termine_text]}>
-                                    Modifier
-                                </Text>
-                            </View>
-                        </TouchableOpacity>
-                    ),
-                    headerRight: () => (
-                        <TouchableOpacity>
-                            <Ionicons name="pencil" color="#46a233" size={30} />
-                        </TouchableOpacity>
-                    ),
+                    headerShown: false,
                 }}
             />
             <ConversationStack.Screen
@@ -60,13 +36,30 @@ export function ConversationStackScreen() {
     );
 }
 
+const colorList = [
+    "#74e65c",
+    "#58c042",
+    "#46a233",
+    "#1e8808",
+    "#146b00",
+    "#ffce57",
+    "#ffc028",
+    "#f4ad00",
+    "#c38900",
+    "#966a00",
+    "#8E8E92",
+    "#D9D9D9",
+];
+
 function extractGroupList(groups) {
     const result = [];
     for (let index = 0; index < groups.length; index++) {
         const element = groups[index];
+        const idx = Math.floor(Math.random() * colorList.length);
         var group = {
             id: element.id,
             name: element.name,
+            color: colorList[idx],
             avatar: "../../assets/images/user1.png",
             subtitle: "last Message",
         };
@@ -86,15 +79,18 @@ export function ConversationScreen({navigation}) {
 
     const renderItem = ({item}) => (
         <ListItem bottomDivider>
-            <Avatar //source={{uri: item.avatar_url}}
+            {/*<Avatar //source={{uri: item.avatar_url}}
                 source={require("../../assets/images/user1.png")}
-            />
+    />*/}
+            <FontAwesomeIcon icon={faCircleUser} size={60} color={item.color} />
             <TouchableOpacity
                 onPress={() =>
                     navigation.navigate("Messages", {GroupID: item.id})
                 }>
                 <ListItem.Content>
-                    <ListItem.Title>{item.name}</ListItem.Title>
+                    <ListItem.Title style={texts.enigme_text}>
+                        {item.name}
+                    </ListItem.Title>
                     <ListItem.Subtitle>{item.subtitle}</ListItem.Subtitle>
                 </ListItem.Content>
             </TouchableOpacity>
@@ -109,21 +105,48 @@ export function ConversationScreen({navigation}) {
 
     return (
         <SafeAreaView style={container.main}>
-            <SearchBar
-                lightTheme
-                round
-                containerStyle={{
-                    backgroundColor: "white",
-                    borderWidth: 0,
-                    borderBottomColor: "transparent",
-                    borderTopColor: "transparent",
-                }}
-                inputContainerStyle={{backgroundColor: "lightgray", height: 30}}
-                inputStyle={{fontSize: 16}}
-                placeholder="Type Here..."
-                onChangeText={updateSearch}
-                value={search}
-            />
+            <View
+                style={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                    margin: 10,
+                }}>
+                <Text style={texts.enigme_title}>CONVERSATIONS</Text>
+            </View>
+            <View
+                style={{
+                    flex: 0.1,
+                    flexDirection: "row",
+                    padding: 10,
+                    alignItems: "center",
+                }}>
+                <SearchBar
+                    lightTheme
+                    containerStyle={{
+                        backgroundColor: "white",
+                        borderWidth: 0,
+                        borderBottomColor: "transparent",
+                        borderTopColor: "transparent",
+                        flex: 8,
+                    }}
+                    inputContainerStyle={{
+                        backgroundColor: "lightgray",
+                        height: 30,
+                    }}
+                    inputStyle={{fontSize: 16}}
+                    placeholder="Recherche"
+                    onChangeText={updateSearch}
+                    value={search}
+                />
+                <TouchableOpacity>
+                    <FontAwesomeIcon
+                        icon={faPenToSquare}
+                        size={30}
+                        color={green.background_principal.backgroundColor}
+                    />
+                </TouchableOpacity>
+            </View>
+
             <View style={container.simple_flex1}>
                 <FlatList
                     keyExtractor={keyExtractor}

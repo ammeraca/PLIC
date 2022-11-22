@@ -110,7 +110,7 @@ export const getGroups = async (
 
         // TODO: handle type !
         const response = await fetch(
-            "https://bal-app-test.herokuapp.com/users/1/groups",
+            "https://bal-app-test.herokuapp.com/users/2/groups",
         );
         const json = await response.json();
 

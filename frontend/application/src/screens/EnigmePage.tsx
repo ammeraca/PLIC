@@ -59,6 +59,7 @@ export function EnigmePageScreen({navigation, route}) {
                     onPress={() => {}}
                     style={[
                         green.background_principal,
+                        container.simple_shadows,
                         {
                             borderRadius: 5,
                             alignItems: "center",

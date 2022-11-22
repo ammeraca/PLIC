@@ -1,5 +1,6 @@
 import {Dimensions, StyleSheet} from "react-native";
-const size = Dimensions.get("window").width;
+const width = Dimensions.get("window").width;
+const height = Dimensions.get("window").height;
 export const container = StyleSheet.create({
     main: {
         flex: 1,
@@ -21,7 +22,6 @@ export const container = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "white",
     },
     simple_center_flex2: {
         flex: 2,
@@ -37,6 +37,19 @@ export const container = StyleSheet.create({
     vertical_container: {
         flexDirection: "row",
     },
+    simple_shadows: {
+        padding: 10,
+        borderColor: "#333333",
+        shadowColor: "rgba(0,0,0,0.5)",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowRadius: 5,
+        shadowOpacity: 1.0,
+        elevation: 10,
+    },
+
     shadows: {
         marginHorizontal: 16,
         marginBottom: 24,
@@ -105,20 +118,20 @@ export const container = StyleSheet.create({
         borderRightWidth: 1,
         borderRadius: 5,
     },
-
+    /* Puzzles Styles */
     enigme_view: {
-        flex: 0.9,
+        flex: 0.85,
         justifyContent: "center",
     },
     enigme_title_view: {
-        flex: 0.1,
+        flex: 0.25,
         justifyContent: "center",
         alignItems: "center",
     },
     /* EnigmePage Styles */
     enigme_page_view: {
         flex: 1,
-        width: size - 50,
+        width: width - 50,
         height: "auto",
         backgroundColor: "white",
         borderRadius: 15,
@@ -131,6 +144,41 @@ export const container = StyleSheet.create({
         shadowRadius: 5,
         shadowOpacity: 1.0,
         elevation: 10,
+    },
+
+    /* SuccessPage */
+    success_page_view: {
+        width: width - 50,
+        height: (height / 3) * 2,
+        backgroundColor: "white",
+        borderRadius: 15,
+        padding: 20,
+        borderColor: "#333333",
+        shadowColor: "rgba(0,0,0,0.5)",
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowRadius: 5,
+        shadowOpacity: 1.0,
+        elevation: 10,
+    },
+    /*GroupModal */
+    modalView: {
+        margin: 20,
+        width: width - 80,
+        backgroundColor: "white",
+        borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
     },
 });
 

@@ -1,4 +1,5 @@
 import {StyleSheet} from "react-native";
+import {green, orange} from "./colors";
 
 export const titles = StyleSheet.create({
     app_title: {
@@ -21,9 +22,35 @@ export const titles = StyleSheet.create({
         color: "black",
         fontSize: 20,
     },
+    login_title: {
+        fontFamily: "Montserrat-Bold",
+        fontSize: 50,
+        color: green.background_principal.backgroundColor,
+    },
+    congrat_title: {
+        fontFamily: "Montserrat-Bold",
+        color: orange.background_principal.backgroundColor,
+        fontSize: 30,
+    },
 });
 
 export const texts = StyleSheet.create({
+    login_text: {
+        fontFamily: "Montserrat-Medium",
+        color: "#333333",
+        fontSize: 20,
+        textAlign: "center",
+    },
+    not_account_text: {
+        fontFamily: "Montserrat-Bold",
+        color: "#333333",
+        fontSize: 18,
+    },
+    signUp_text: {
+        fontFamily: "Montserrat-Bold",
+        color: orange.background_principal.backgroundColor,
+        fontSize: 18,
+    },
     simple_text: {
         fontFamily: "Montserrat-Medium",
         color: "#333333",
@@ -45,6 +72,11 @@ export const texts = StyleSheet.create({
         color: "white",
         fontSize: 25,
     },
+    button_dark_text: {
+        fontFamily: "Montserrat-Bold",
+        color: "#333333",
+        fontSize: 15,
+    },
     caption_text: {
         fontFamily: "Montserrat-Medium",
         fontSize: 14,
@@ -52,18 +84,19 @@ export const texts = StyleSheet.create({
     },
     termine_text: {
         fontFamily: "Montserrat-Bold",
-        color: "#46a233",
+        color: green.background_principal.backgroundColor,
         fontSize: 16,
     },
     enigme_title: {
         fontFamily: "Montserrat-Bold",
-        color: "#f4ad00",
+        color: orange.background_principal.backgroundColor,
         fontSize: 40,
+        paddingTop: 20,
     },
     /* Enigme Page */
     enigme_page_main_text: {
         fontFamily: "Montserrat-Bold",
-        color: "#46a233",
+        color: green.background_principal.backgroundColor,
         fontSize: 25,
         textAlign: "center",
     },
@@ -73,4 +106,5 @@ export const texts = StyleSheet.create({
         fontSize: 18,
         textAlign: "center",
     },
+    /* */
 });
