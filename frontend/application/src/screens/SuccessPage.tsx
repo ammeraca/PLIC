@@ -20,6 +20,15 @@ export default function SucessPageScreen({navigation, route}) {
         navigation.setOptions({
             title,
         });
+        navigation.getParent()?.setOptions({
+            tabBarStyle: {
+                display: "none",
+            },
+        });
+        return () =>
+            navigation.getParent()?.setOptions({
+                tabBarStyle: undefined,
+            });
     }, [navigation]);
     return (
         <SafeAreaView style={container.simple_center_flex1}>

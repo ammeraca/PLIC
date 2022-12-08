@@ -9,7 +9,7 @@ const getAuthorizationToken = async () => {
     try {
         console.log("in getAutho");
         const response = await fetch(
-            "https://bal-app-test.herokuapp.com/authorization",
+            "https://bal-app-api.herokuapp.com/authorization",
         );
         const json = await response.json();
         return json.access_token;
@@ -34,7 +34,7 @@ export const getRiddle = async (
 
         // TODO: handle type !
         const response = await fetch(
-            "https://bal-app-test.herokuapp.com/riddles/select_riddle/" +
+            "https://bal-app-api.herokuapp.com/riddles/select_riddle/" +
                 riddleIdentifier,
             {
                 headers: myHeaders,
@@ -64,7 +64,7 @@ export const getGroups = async (
 
         // TODO: handle type !
         const response = await fetch(
-            "https://bal-app-test.herokuapp.com/users/1/groups",
+            "https://bal-app-api.herokuapp.com/users/1/groups",
             {
                 headers: myHeaders,
             },
@@ -89,7 +89,7 @@ export const getRiddle = async (
 
         // TODO: handle type !
         const response = await fetch(
-            "https://bal-app-test.herokuapp.com/riddles/select_riddle/" +
+            "https://bal-app-api.herokuapp.com/riddles/select_riddle/" +
                 riddleIdentifier,
         );
         const json = await response.json();
@@ -110,7 +110,7 @@ export const getGroups = async (
 
         // TODO: handle type !
         const response = await fetch(
-            "https://bal-app-test.herokuapp.com/users/2/groups",
+            "https://bal-app-api.herokuapp.com/users/2/groups",
         );
         const json = await response.json();
 
@@ -130,7 +130,7 @@ export const getUser = async (
 
         // TODO: handle type !
         const response = await fetch(
-            "https://bal-app-test.herokuapp.com/users/3",
+            "https://bal-app-api.herokuapp.com/users/3",
         );
         const user = await response.json();
 
@@ -151,7 +151,7 @@ export async function updateUser() {
             body: JSON.stringify(StateUser),
         };
         const request = await fetch(
-            "https://bal-app-test.herokuapp.com/users/",
+            "https://bal-app-api.herokuapp.com/users/",
             requestOptions,
         );
         const response = await request.json();

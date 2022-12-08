@@ -32,6 +32,12 @@ export function ConversationStackScreen() {
                 component={MessagesScreen}
                 options={{
                     title: "",
+                    headerTitleAlign: "center",
+                    headerTitleStyle: {
+                        fontFamily: "Montserrat-Bold",
+                        fontSize: 20,
+                    },
+                    headerTintColor: "#46a233",
                 }}
             />
             <ConversationStack.Screen
@@ -109,7 +115,10 @@ export function ConversationScreen({navigation}) {
             <FontAwesomeIcon icon={faCircleUser} size={60} color={item.color} />
             <TouchableOpacity
                 onPress={() =>
-                    navigation.navigate("Messages", {GroupID: item.id})
+                    navigation.navigate("Messages", {
+                        GroupID: item.id,
+                        title: item.name,
+                    })
                 }>
                 <ListItem.Content>
                     <ListItem.Title style={texts.enigme_text}>

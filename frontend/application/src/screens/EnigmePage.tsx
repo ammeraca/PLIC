@@ -18,6 +18,15 @@ export function EnigmePageScreen({navigation, route}) {
         navigation.setOptions({
             title,
         });
+        navigation.getParent()?.setOptions({
+            tabBarStyle: {
+                display: "none",
+            },
+        });
+        return () =>
+            navigation.getParent()?.setOptions({
+                tabBarStyle: undefined,
+            });
     }, [navigation]);
     return (
         <SafeAreaView style={container.main}>

@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useCallback} from "react";
+import React, {useEffect, useState, useCallback, useLayoutEffect} from "react";
 import {GiftedChat} from "react-native-gifted-chat";
 import {userInfo} from "./Main";
 import SocketIOClient from "socket.io-client";
@@ -6,14 +6,30 @@ import {Alert, Text, View, StyleSheet, Button} from "react-native";
 import {container} from "../styles/bases";
 import {SafeAreaView} from "react-native-safe-area-context";
 
-export function MessagesScreen({route}) {
-    const {GroupID} = route.params;
+export function MessagesScreen({navigation, route}) {
+    const {GroupID, title} = route.params;
     console.log("ID of group is: " + GroupID);
     const [messages, setMessages] = useState<any[]>([]);
 
     const socketRef = SocketIOClient("ws://bal-app-test.herokuapp.com", {
         transports: ["websocket"], // you need to explicitly tell it to use websockets
     });
+
+    useLayoutEffect(() => {
+        navigation.setOptions({
+            title,
+        });
+        navigation.getParent()?.setOptions({
+            tabBarStyle: {
+                display: "none",
+            },
+        });
+        return () =>
+            navigation.getParent()?.setOptions({
+                tabBarStyle: undefined,
+            });
+    }, [navigation]);
+
     useEffect(() => {
         socketRef.emit("createRoom", GroupID, response => {
             console.log(response);

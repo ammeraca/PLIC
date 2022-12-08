@@ -8,6 +8,8 @@ import {
     Dimensions,
 } from "react-native";
 
+import {getFocusedRouteNameFromRoute} from "@react-navigation/native";
+
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 import {NavigationContainer} from "@react-navigation/native";
@@ -44,7 +46,7 @@ export type RootTabParamList = {
 
 export var token = "";
 
-const Tab = createBottomTabNavigator<RootTabParamList>();
+export const Tab = createBottomTabNavigator<RootTabParamList>();
 
 // authentification at https://reactnavigation.org/docs/auth-flow
 export default function App() {
@@ -173,7 +175,9 @@ export default function App() {
                         <Tab.Screen
                             name="Accueil"
                             component={MainScreen}
-                            options={{headerShown: false}}
+                            options={{
+                                headerShown: false,
+                            }}
                         />
                         <Tab.Screen
                             name="Puzzles"

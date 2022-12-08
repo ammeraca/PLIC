@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, {useLayoutEffect, useRef} from "react";
 import {View, Text, TouchableOpacity, FlatList} from "react-native";
 import {SafeAreaView} from "react-native-safe-area-context";
 import {container} from "../styles/bases";
@@ -22,6 +22,18 @@ const list = [
 ];
 
 export function NewDiscussionsScreen({navigation}) {
+    useLayoutEffect(() => {
+        navigation.getParent()?.setOptions({
+            tabBarStyle: {
+                display: "none",
+            },
+        });
+        return () =>
+            navigation.getParent()?.setOptions({
+                tabBarStyle: undefined,
+            });
+    }, [navigation]);
+
     return (
         <SafeAreaView style={container.main}>
             <View style={container.simple_flex1}>

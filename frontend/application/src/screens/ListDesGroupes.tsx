@@ -45,6 +45,15 @@ export function ListDesGroupesScreen({navigation, route}) {
         navigation.setOptions({
             title,
         });
+        navigation.getParent()?.setOptions({
+            tabBarStyle: {
+                display: "none",
+            },
+        });
+        return () =>
+            navigation.getParent()?.setOptions({
+                tabBarStyle: undefined,
+            });
     }, [navigation]);
 
     const [groups, setGroups] = useState<object[]>([]);
