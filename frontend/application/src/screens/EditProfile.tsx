@@ -15,8 +15,16 @@ import {userInfo} from "./Main";
 import {StateUser} from "./Account";
 import {KeyboardAvoidingWrapper} from "../components/KeyboardAvoidingWrapper";
 
-export function EditProfileScreen() {
+export function EditProfileScreen({route}) {
     console.log(userInfo);
+
+    const {user} = route.params;
+    StateUser.id = user.id;
+    StateUser.username = user.username;
+    StateUser.email = user.email;
+    StateUser.location = user.location;
+    StateUser.description = user.description;
+
     return (
         <SafeAreaView style={container.main}>
             <KeyboardAvoidingWrapper>
@@ -52,7 +60,7 @@ export function EditProfileScreen() {
                                 borderRadius: 7,
                             }}>
                             <TextInput
-                                placeholder={" " + StateUser.description}
+                                placeholder={" " + user.description}
                                 placeholderTextColor="#666666"
                                 autoCorrect={false}
                                 style={[
@@ -71,7 +79,7 @@ export function EditProfileScreen() {
                     <View style={container.editAccountPanel}>
                         <Ionicons name="person" color="#777777" size={25} />
                         <TextInput
-                            placeholder={StateUser.username}
+                            placeholder={user.username}
                             placeholderTextColor="#666666"
                             autoCorrect={false}
                             style={[
@@ -89,7 +97,7 @@ export function EditProfileScreen() {
                     <View style={container.editAccountPanel}>
                         <Ionicons name="location" color="#777777" size={25} />
                         <TextInput
-                            placeholder={StateUser.location}
+                            placeholder={user.location}
                             placeholderTextColor="#666666"
                             autoCorrect={false}
                             style={[

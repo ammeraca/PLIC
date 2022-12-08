@@ -31,7 +31,7 @@ export function AccountStackScreens({navigation}) {
                     headerRight: () => (
                         <TouchableOpacity
                             onPress={() => {
-                                updateUser();
+                                updateUser(StateUser);
                                 navigation.navigate("Account");
                             }}>
                             <View>
@@ -48,15 +48,16 @@ export function AccountStackScreens({navigation}) {
 }
 
 export const StateUser = {
-    id: "3",
-    username: "Maridiyath",
-    email: "bmaridiyath01@gmail.com",
-    location: "KB, France",
-    description: "Sortir !!",
+    id: "",
+    username: "",
+    email: "",
+    location: "",
+    description: "",
 };
 
 export function AccountScreen({navigation}) {
     const [user, setUser] = useState("");
+
     useEffect(() => {
         getUser(setUser);
         navigation.addListener("focus", () => {
@@ -92,7 +93,7 @@ export function AccountScreen({navigation}) {
                                     marginTop: 15,
                                 },
                             ]}>
-                            {/*userInfo.nickname*/ user.username}
+                            {user.username}
                         </Title>
                         <Caption style={texts.caption_text}>
                             {user.description}
@@ -147,7 +148,11 @@ export function AccountScreen({navigation}) {
                             container.account_touchable,
                             container.accountMenuItem,
                         ]}
-                        onPress={() => navigation.navigate("EditProfile")}>
+                        onPress={() =>
+                            navigation.navigate("EditProfile", {
+                                user: user,
+                            })
+                        }>
                         <Ionicons
                             name="person"
                             color="#f4ad00"

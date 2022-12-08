@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {Dispatch} from "react";
-import {StateUser} from "../screens/Account";
 import {riddleIdentifier} from "../screens/Puzzles";
+import {userInfo} from "../screens/Main";
+import {StateUser} from "../screens/Account";
 
 // TODO: search UseState / useEffects !!
 
@@ -122,6 +123,7 @@ export const getGroups = async (
     }
 };
 
+/* Get user by email*/
 export const getUser = async (
     setUser: Dispatch<React.SetStateAction<string>>,
 ): Promise<any> => {
@@ -130,7 +132,7 @@ export const getUser = async (
 
         // TODO: handle type !
         const response = await fetch(
-            "https://bal-app-api.herokuapp.com/users/3",
+            "https://bal-app-api.herokuapp.com/users/email/" + userInfo.email,
         );
         const user = await response.json();
 
@@ -142,13 +144,12 @@ export const getUser = async (
     }
 };
 
-export async function updateUser() {
+export async function updateUser(user) {
     try {
-        console.log("in update function");
         const requestOptions = {
             method: "PUT",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(StateUser),
+            body: JSON.stringify(user),
         };
         const request = await fetch(
             "https://bal-app-api.herokuapp.com/users/",
