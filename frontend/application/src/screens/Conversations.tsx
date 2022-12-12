@@ -5,7 +5,7 @@ import {container} from "../styles/bases";
 import {texts} from "../styles/texts";
 import {ListItem} from "@rneui/themed";
 import {SafeAreaView} from "react-native-safe-area-context";
-import {getGroups} from "../components/back";
+import {createGroup, getGroups, getUser} from "../components/back";
 import {MessagesScreen} from "./Messages";
 import {SearchBar} from "@rneui/themed";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
@@ -13,10 +13,12 @@ import {faPenToSquare, faCircleUser} from "@fortawesome/free-solid-svg-icons";
 import {green} from "../styles/colors";
 import {NewDiscussionsScreen} from "./NewDiscussions";
 import {ListDesGroupesScreen} from "./ListDesGroupes";
+import {NewGroupScreen} from "./NewGroup";
+import {NewGroupInfoScreen} from "./NewGroupInfo";
 
 const ConversationStack = createNativeStackNavigator();
 
-export function ConversationStackScreen() {
+export function ConversationStackScreen({navigation}) {
     return (
         <ConversationStack.Navigator>
             <ConversationStack.Screen
@@ -65,11 +67,61 @@ export function ConversationStackScreen() {
                     headerTintColor: green.background_principal.backgroundColor,
                 }}
             />
+            <ConversationStack.Screen
+                name="NewGroup"
+                component={NewGroupScreen}
+                options={{
+                    headerTitleAlign: "center",
+                    title: "Ajouter des membres",
+                    headerTitleStyle: {
+                        fontFamily: "Montserrat-Bold",
+                        fontSize: 18,
+                        fontWeight: "bold",
+                    },
+                    headerTintColor: green.background_principal.backgroundColor,
+                    headerRight: () => (
+                        <TouchableOpacity
+                            onPress={() => {
+                                navigation.navigate("CreateGroup");
+                            }}>
+                            <View>
+                                <Text style={[texts.termine_text]}>
+                                    Suivant
+                                </Text>
+                            </View>
+                        </TouchableOpacity>
+                    ),
+                }}
+            />
+            <ConversationStack.Screen
+                name="CreateGroup"
+                component={NewGroupInfoScreen}
+                options={{
+                    headerTitleAlign: "center",
+                    title: "Nouveau groupe",
+                    headerTitleStyle: {
+                        fontFamily: "Montserrat-Bold",
+                        fontSize: 20,
+                    },
+                    headerTintColor: green.background_principal.backgroundColor,
+                    headerRight: () => (
+                        <TouchableOpacity
+                            onPress={() => {
+                                createGroup();
+                                navigation.navigate("ConversationsStack");
+                            }}>
+                            <View>
+                                <Text style={[texts.termine_text]}>Créer</Text>
+                            </View>
+                        </TouchableOpacity>
+                    ),
+                }}
+            />
         </ConversationStack.Navigator>
     );
 }
 
-const colorList = [
+export const colorList = [
     "#74e65c",
     "#58c042",
     "#46a233",
@@ -101,32 +153,33 @@ function extractGroupList(groups) {
     return result;
 }
 
+export var UserDB = "";
+
 export function ConversationScreen({navigation}) {
     const [groups, setGroups] = useState<object[]>([]);
+    const [user, setUser] = useState("");
     useEffect(() => {
+        getUser(setUser);
         getGroups(setGroups);
-    }, []);
-    //ListItem
+
+        navigation.addListener("focus", () => {
+            getGroups(setGroups);
+        });
+    }, [navigation]);
+
+    UserDB = user;
     const list = extractGroupList(groups);
     const keyExtractor = (item, index) => index.toString();
 
     const renderItem = ({item}) => (
-        <ListItem bottomDivider>
+        <ListItem topDivider bottomDivider>
             <FontAwesomeIcon icon={faCircleUser} size={60} color={item.color} />
-            <TouchableOpacity
-                onPress={() =>
-                    navigation.navigate("Messages", {
-                        GroupID: item.id,
-                        title: item.name,
-                    })
-                }>
-                <ListItem.Content>
-                    <ListItem.Title style={texts.enigme_text}>
-                        {item.name}
-                    </ListItem.Title>
-                    <ListItem.Subtitle>{item.subtitle}</ListItem.Subtitle>
-                </ListItem.Content>
-            </TouchableOpacity>
+            <ListItem.Content>
+                <ListItem.Title style={texts.enigme_text}>
+                    {item.name}
+                </ListItem.Title>
+                <ListItem.Subtitle>{item.subtitle}</ListItem.Subtitle>
+            </ListItem.Content>
         </ListItem>
     );
 

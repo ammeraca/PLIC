@@ -2,7 +2,9 @@ import React, {useEffect, useState} from "react";
 import {Dispatch} from "react";
 import {riddleIdentifier} from "../screens/Puzzles";
 import {userInfo} from "../screens/Main";
-import {StateUser} from "../screens/Account";
+import {UserDB} from "../screens/Conversations";
+import {userFriendsId} from "../screens/NewGroup";
+import {groupInfo} from "../screens/NewGroupInfo";
 
 // TODO: search UseState / useEffects !!
 
@@ -109,14 +111,97 @@ export const getGroups = async (
     try {
         console.log("in getGroups function");
 
+        const responseUser = await fetch(
+            "https://bal-app-api.herokuapp.com/users/email/" + userInfo.email,
+        );
+        const user = await responseUser.json();
         // TODO: handle type !
         const response = await fetch(
-            "https://bal-app-api.herokuapp.com/users/2/groups",
+            "https://bal-app-api.herokuapp.com/users/" + user.id + "/groups",
         );
         const json = await response.json();
-
-        console.log(json);
         setGroups(json);
+        return json;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+export async function createGroup() {
+    try {
+        console.log(
+            "In create groupe : " +
+                groupInfo.name +
+                " parcours name: " +
+                groupInfo.parcourdName,
+        );
+        console.log("In create groupe : " + userFriendsId);
+        /*CREATE GROUP*/
+        var group = {
+            name: "",
+            parcoursId: 1,
+            riddleId: 1,
+        };
+
+        group.name = groupInfo.name;
+
+        const requestOptions = {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(group),
+        };
+        const request = await fetch(
+            "https://bal-app-api.herokuapp.com/groups",
+            requestOptions,
+        );
+        const response = await request.json();
+        console.log("Groupe: " + response.id);
+
+        /*ADD USER TO GROUP*/
+        var userId = {userId: UserDB.id};
+        const options = {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(userId),
+        };
+        await fetch(
+            "https://bal-app-api.herokuapp.com/groups/" +
+                response.id +
+                "/users",
+            options,
+        );
+
+        /*ADD USER FRIENDS TO GROUP*/
+        userFriendsId.forEach(async element => {
+            var addUserId = {userId: element};
+            const addOptions = {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(addUserId),
+            };
+            await fetch(
+                "https://bal-app-api.herokuapp.com/groups/" +
+                    response.id +
+                    "/users",
+                addOptions,
+            );
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const getUserFriends = async (
+    setUserFriends: Dispatch<React.SetStateAction<object[]>>,
+): Promise<any> => {
+    try {
+        console.log("in getUserFriends function: " + UserDB.id);
+
+        const response = await fetch(
+            "https://bal-app-api.herokuapp.com/users/" + UserDB.id + "/friends",
+        );
+        const json = await response.json();
+        setUserFriends(json);
         return json;
     } catch (error) {
         console.error(error);
@@ -128,15 +213,13 @@ export const getUser = async (
     setUser: Dispatch<React.SetStateAction<string>>,
 ): Promise<any> => {
     try {
-        console.log("in getUser function");
+        console.log("in getUser function: " + userInfo.email);
 
         // TODO: handle type !
         const response = await fetch(
             "https://bal-app-api.herokuapp.com/users/email/" + userInfo.email,
         );
         const user = await response.json();
-
-        console.log(user);
         setUser(user);
         return user;
     } catch (error) {

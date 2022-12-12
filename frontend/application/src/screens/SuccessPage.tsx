@@ -69,7 +69,7 @@ export default function SucessPageScreen({navigation, route}) {
                                 },
                             ]}>
                             <View>
-                                <Text style={texts.button_text}>Continuer</Text>
+                                <Text style={texts.button_text}>Voir l'AR</Text>
                             </View>
                         </TouchableOpacity>
                     </View>

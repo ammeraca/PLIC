@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, useRef} from "react";
+import React, {useLayoutEffect} from "react";
 import {View, Text, TouchableOpacity, FlatList} from "react-native";
 import {SafeAreaView} from "react-native-safe-area-context";
 import {container} from "../styles/bases";
@@ -11,7 +11,6 @@ import {
     faFilm,
 } from "@fortawesome/free-solid-svg-icons";
 import {green, orange} from "../styles/colors";
-import {ListItem} from "@rneui/themed";
 import {texts} from "../styles/texts";
 
 const list = [
@@ -37,7 +36,8 @@ export function NewDiscussionsScreen({navigation}) {
     return (
         <SafeAreaView style={container.main}>
             <View style={container.simple_flex1}>
-                <TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate("NewGroup")}>
                     <View
                         style={{
                             display: "flex",
