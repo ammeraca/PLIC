@@ -54,7 +54,7 @@ export default function SucessPageScreen({navigation, route}) {
                     <View style={{marginTop: 40}}>
                         <TouchableOpacity
                             onPress={() => {
-                                navigation.goBack();
+                                //navigation.goBack();
                             }}
                             style={[
                                 green.background_principal,

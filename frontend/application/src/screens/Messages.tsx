@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useCallback, useLayoutEffect} from "react";
 import {GiftedChat} from "react-native-gifted-chat";
-import {userInfo} from "./Main";
+import {userDB, userInfo} from "./Main";
 import SocketIOClient from "socket.io-client";
 import {Alert, Text, View, StyleSheet, Button} from "react-native";
 import {container} from "../styles/bases";
@@ -33,15 +33,17 @@ export function MessagesScreen({navigation, route}) {
 
     useEffect(() => {
         socketRef.emit("createRoom", GroupID, response => {
-            console.log(response);
+            console.log("Create Room" + response);
         });
+        var messageId = 0;
         socketRef.on("message", response => {
+            messageId = messageId + 1;
             var sentMessages = {
-                _id: "2",
+                _id: messageId.toString(),
                 text: response.message,
                 createdAt: new Date(),
                 user: {
-                    _id: response.name,
+                    _id: userDB.id,
                     name: response.name,
                 },
             };
@@ -63,9 +65,14 @@ export function MessagesScreen({navigation, route}) {
         console.log(messages);
         socketRef.emit(
             "createMessage",
-            {name: userInfo.nickname, message: messages[0].text, room: GroupID},
+            {
+                name: userInfo.nickname,
+                message: messages[0].text,
+                groupId: GroupID,
+                userId: UserDB.id,
+            },
             response => {
-                console.log(response);
+                console.log("Create Message:" + response);
             },
         );
         setMessages(previousMessages =>

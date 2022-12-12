@@ -65,7 +65,11 @@ export function EnigmePageScreen({navigation, route}) {
                     alignItems: "center",
                 }}>
                 <TouchableOpacity
-                    onPress={() => {}}
+                    onPress={() => {
+                        navigation.navigate("SuccessPage", {
+                            title: title,
+                        });
+                    }}
                     style={[
                         green.background_principal,
                         container.simple_shadows,
