@@ -1,4 +1,4 @@
-import React, {useLayoutEffect} from "react";
+import React, {useLayoutEffect, useEffect, useState} from "react";
 import {View, Text, TouchableOpacity, FlatList} from "react-native";
 import {SafeAreaView} from "react-native-safe-area-context";
 import {container} from "../styles/bases";
@@ -12,6 +12,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {green, orange} from "../styles/colors";
 import {texts} from "../styles/texts";
+import {getUserFriends} from "../components/back";
+import {colorList} from "./Conversations";
 
 const list = [
     {id: 1, name: "Cinéma"},
@@ -20,7 +22,31 @@ const list = [
     {id: 4, name: "Monuments français"},
 ];
 
+function extractGroupList(groups) {
+    const result = [];
+    for (let index = 0; index < groups.length; index++) {
+        const element = groups[index];
+        const idx = Math.floor(Math.random() * colorList.length);
+        var group = {
+            id: element.id,
+            username: element.username,
+            email: element.email,
+            color: colorList[idx],
+        };
+        result.push(group);
+    }
+    return result;
+}
+
+export var friends: object[] = [];
+
 export function NewDiscussionsScreen({navigation}) {
+    const [userFriends, setUserFriends] = useState<object[]>([]);
+
+    useEffect(() => {
+        getUserFriends(setUserFriends);
+    }, []);
+
     useLayoutEffect(() => {
         navigation.getParent()?.setOptions({
             tabBarStyle: {
@@ -32,6 +58,8 @@ export function NewDiscussionsScreen({navigation}) {
                 tabBarStyle: undefined,
             });
     }, [navigation]);
+
+    friends = extractGroupList(userFriends);
 
     return (
         <SafeAreaView style={container.main}>

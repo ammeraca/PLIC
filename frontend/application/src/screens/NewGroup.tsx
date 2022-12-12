@@ -9,35 +9,14 @@ import {faCircleUser} from "@fortawesome/free-solid-svg-icons";
 import {ListItem, Icon} from "@rneui/themed";
 import {texts} from "../styles/texts";
 import {ListItemCheckBox} from "@rneui/base/dist/ListItem/ListItem.CheckBox";
-
-function extractGroupList(groups) {
-    const result = [];
-    for (let index = 0; index < groups.length; index++) {
-        const element = groups[index];
-        const idx = Math.floor(Math.random() * colorList.length);
-        var group = {
-            id: element.id,
-            username: element.username,
-            email: element.email,
-            color: colorList[idx],
-            checked: false,
-        };
-        result.push(group);
-    }
-    return result;
-}
+import {friends} from "./NewDiscussions";
 
 export var userFriendsId: number[] = [];
 
 export function NewGroupScreen() {
-    const [userFriends, setUserFriends] = useState<object[]>([]);
     const [selectedItem, setSelectedItem] = useState<number[]>([]);
 
-    useEffect(() => {
-        getUserFriends(setUserFriends);
-    }, []);
-
-    const list = extractGroupList(userFriends);
+    const list = friends;
 
     const keyExtractor = (item, index) => index.toString();
 
