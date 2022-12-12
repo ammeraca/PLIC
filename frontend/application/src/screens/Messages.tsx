@@ -5,13 +5,14 @@ import SocketIOClient from "socket.io-client";
 import {Alert, Text, View, StyleSheet, Button} from "react-native";
 import {container} from "../styles/bases";
 import {SafeAreaView} from "react-native-safe-area-context";
+import {UserDB} from "./Conversations";
 
 export function MessagesScreen({navigation, route}) {
     const {GroupID, title} = route.params;
     console.log("ID of group is: " + GroupID);
     const [messages, setMessages] = useState<any[]>([]);
 
-    const socketRef = SocketIOClient("ws://bal-app-test.herokuapp.com", {
+    const socketRef = SocketIOClient("ws://bal-app-api.herokuapp.com", {
         transports: ["websocket"], // you need to explicitly tell it to use websockets
     });
 
@@ -79,7 +80,7 @@ export function MessagesScreen({navigation, route}) {
                     messages={messages}
                     onSend={messages => onSend(messages)}
                     user={{
-                        _id: userInfo.nickname,
+                        _id: UserDB.id,
                         name: userInfo.nickname,
                     }}
                 />

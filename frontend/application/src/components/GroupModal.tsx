@@ -26,6 +26,8 @@ function extractGroupList(groups) {
     return result;
 }
 
+export var activeGroup: number = 1;
+
 const GroupModal = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [groups, setGroups] = useState<object[]>([]);
@@ -36,7 +38,10 @@ const GroupModal = () => {
 
     const renderItem = ({item}) => (
         <ListItem bottomDivider>
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity
+                onPress={() => {
+                    activeGroup = item.id;
+                }}>
                 <ListItem.Content>
                     <ListItem.Title style={texts.enigme_text}>
                         {item.name}

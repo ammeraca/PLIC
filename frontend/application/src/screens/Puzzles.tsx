@@ -1,14 +1,14 @@
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import React, {useState, useEffect} from "react";
 import {View, Text, SafeAreaView, FlatList} from "react-native";
+import {getGroups, getRiddleList} from "../components/back";
 import EnigmeCard from "../components/EnigmeCard";
 import GroupModal from "../components/GroupModal";
 import {container} from "../styles/bases";
 import {texts} from "../styles/texts";
 import {EnigmePageScreen} from "./EnigmePage";
 import SucessPageScreen from "./SuccessPage";
-
-export var riddleIdentifier: string = "1";
+import {activeGroup} from "../components/GroupModal";
 
 const PuzzleStack = createNativeStackNavigator();
 
@@ -68,9 +68,11 @@ const data = [
 
 export function PuzzleScreen({navigation}) {
     const [dataSource, setDataSource] = useState([{}]);
+    const [riddleList, setRiddleList] = useState<object[]>([]);
     useEffect(() => {
+        getRiddleList(setRiddleList);
         setDataSource(data);
-    }, []);
+    }, [activeGroup]);
 
     return (
         <SafeAreaView style={container.main}>
@@ -80,7 +82,7 @@ export function PuzzleScreen({navigation}) {
             </View>
             <View style={container.enigme_view}>
                 <FlatList
-                    data={dataSource}
+                    data={riddleList}
                     style={{padding: 10}}
                     contentContainerStyle={{
                         flexGrow: 1,

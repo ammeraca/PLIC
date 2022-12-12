@@ -18,7 +18,7 @@ import {texts} from "../styles/texts";
 export default function EnigmeCard(props) {
     let iconElm;
     let card;
-    if (props.enigme.status === "Finished") {
+    if (props.enigme.status === "Solved") {
         iconElm = (
             <FontAwesomeIcon
                 icon={faCircleCheck}

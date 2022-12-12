@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {Dispatch} from "react";
-import {riddleIdentifier} from "../screens/Puzzles";
 import {userInfo} from "../screens/Main";
 import {UserDB} from "../screens/Conversations";
 import {userFriendsId} from "../screens/NewGroup";
 import {groupInfo} from "../screens/NewGroupInfo";
+import {activeGroup} from "./GroupModal";
 
 // TODO: search UseState / useEffects !!
 
@@ -93,13 +93,29 @@ export const getRiddle = async (
         // TODO: handle type !
         const response = await fetch(
             "https://bal-app-api.herokuapp.com/riddles/select_riddle/" +
-                riddleIdentifier,
+                activeGroup,
         );
         const json = await response.json();
 
         console.log(json.text.split("‚").join("é"));
         setRiddle(json.text.split("‚").join("é"));
         return json.text;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+export const getRiddleList = async (
+    setRiddleList: Dispatch<React.SetStateAction<object[]>>,
+): Promise<any> => {
+    try {
+        console.log("in getRiddleList function :" + activeGroup);
+        const response = await fetch(
+            "https://bal-app-api.herokuapp.com/riddles/solved/" + activeGroup,
+        );
+        const json = await response.json();
+        setRiddleList(json);
+        return json;
     } catch (error) {
         console.error(error);
     }
@@ -114,7 +130,9 @@ export const getGroups = async (
         const responseUser = await fetch(
             "https://bal-app-api.herokuapp.com/users/email/" + userInfo.email,
         );
+        //console.log(responseUser);
         const user = await responseUser.json();
+        console.log("Get group user Id :" + user.id);
         // TODO: handle type !
         const response = await fetch(
             "https://bal-app-api.herokuapp.com/users/" + user.id + "/groups",

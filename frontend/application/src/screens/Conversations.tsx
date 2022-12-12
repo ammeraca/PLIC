@@ -174,12 +174,20 @@ export function ConversationScreen({navigation}) {
     const renderItem = ({item}) => (
         <ListItem topDivider bottomDivider>
             <FontAwesomeIcon icon={faCircleUser} size={60} color={item.color} />
-            <ListItem.Content>
-                <ListItem.Title style={texts.enigme_text}>
-                    {item.name}
-                </ListItem.Title>
-                <ListItem.Subtitle>{item.subtitle}</ListItem.Subtitle>
-            </ListItem.Content>
+            <TouchableOpacity
+                onPress={() => {
+                    navigation.navigate("Messages", {
+                        GroupID: item.id,
+                        title: item.name,
+                    });
+                }}>
+                <ListItem.Content>
+                    <ListItem.Title style={texts.enigme_text}>
+                        {item.name}
+                    </ListItem.Title>
+                    <ListItem.Subtitle>{item.subtitle}</ListItem.Subtitle>
+                </ListItem.Content>
+            </TouchableOpacity>
         </ListItem>
     );
 
