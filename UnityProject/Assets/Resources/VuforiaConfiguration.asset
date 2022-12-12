@@ -9,30 +9,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -2067402452, guid: 1e108ae5f2133934f948edded555f03e, type: 3}
+  m_Script: {fileID: -2067402452, guid: 8a9a760f95896c34689febc965510927, type: 3}
   m_Name: VuforiaConfiguration
   m_EditorClassIdentifier: 
   vuforia:
     vuforiaLicenseKey: AXmDT2n/////AAABmbJ8gZz0ZkIxqVu6Y0Z3TFI36pYiRf1Fo4vioor8gZop+c4DqYBsZWG0AjGMscUCvmo3qfV5Nv0OjmSoZzN4orduDf+z7VyA6RIkzV8PsQ1m1TWsnBaIDfwPFlxfRqzafn5guk01ArAvkX0f9jcaE3aL31n3QC6/oUmnsA+r16xFTvPZ7fpeSxawmx/u5SqvS7h0IKDI7EAL0uf5UVVOvwAUSp+b1cLmk+reupHS1SieCRW2aAlqDS+aqzjApHRycN2all5gIYP1II/7K0V2hiFHT2T1o8+Lwyz9sLZyjMXnTmJAsXEQE7P+m+c2K3DWh2au2kjlvaq13XODhWjgmFgVbrmKhJG+4XXdpoH9UPI3
-    ufoLicenseKey: QWRQZkdUdi8vLy8vQUFBQUtQVmJTeHExYkU5NmhrZ1VEWDZES2lLR0lDMFVHTThwMDd3UHhhSGxCV2lOQjFmMlcrWTRMemVGL2k1Z0hiaVZsNTgxUm9tTStjaFh3dHdMcFZCQzhhMUVkYk9ldFNRNDR1Yk5BREZQNGtaaXNENUlCR0dCcHdYQTlXRU85Y1VJQ2NGR1NCdWwwUk5kSHhtUWNVMURVQTljUThZMFpYLy90ZEVidms3em5YQS9DTjYyTzVpRXFZY3BsTG9qWWxmSUgvOHhGcGNZUWpqU0NkTFVYS0YvcWFwb1llWDc5NGw0NW1zSWFHYncwWVRyMkJwaXorTlNSbkdVUDRjQkl4NVFaTGNmeGRhL2xEL3daODc4enlGMFgzZ085czJkdFlkQm5meVpJNE5odTJCaHdHL2VCRUtWRElQWlJ5SW5PcjUwQTY1S1NocFlwTUZLNEVJSmU0Q1UrMHhiV1ZwNk9LUFBNMTlkSmt5M1JIKys=
+    ufoLicenseKey: QVUzR2JENy8vLy8vQUFBQUtLNXZ3K3NCT2tveG0vN3pDamhFRXdhWW5BZTBuckhTTDFXOGZFNE5xTVBETG5GVjNxZWpKU1hRRXpnWTZQbXJhb0VQdWRZUjROWFFqVzd6Y1dHT1BPT281YTFTMFgzNm5OWFozMGpBWWtvczBrWkJJd0FzNkpVbFJwNzdSWkt2Rk50M0txaExUVEFrU3NjMzA2czVFVTNiU1dPZElWSkJ0ZVJrcGduVWc5WHdsWkN5aVptY1ZwMlpxUnNEelZDYlBIN214bjNvb0ZodEJwL0o2WXVTeUhJMW96STUxM0doekhleDRTOVgzNXhEeVpOcWVtRFBhYXFReWVBMmEvNHdTOTVQSGF3eUg1aFFiNTBqci85U3hUM215YWdYRUJ0U1FwdFQzUm1GUVRFaFh3K01WbXFJL0NhNTFTbzU0UnlDdzh3UWpGOWdXMGV2WTNBVlY1NnNzV1VWYmtIR1lMeXI4RFBjdGRoM2JZM0g=
     delayedInitialization: 0
     cameraFocusModeSetting: 2
     cameraDeviceModeSetting: -1
-    maxSimultaneousImageTargets: 1
+    maxSimultaneousImageTargets: 4
     maxSimultaneousObjectTargets: 1
     virtualSceneScaleFactor: 1
     useDelayedLoadingObjectTargets: 0
     modelTargetRecoWhileExtendedTracked: 1
-    shareRecordingsInITunes: 0
+    shareRecordingsInITunes: 1
     version: 10.5.5
-    eulaAcceptedVersions: '{"Values":["10.5"]}'
+    eulaAcceptedVersions: '{"Values":["","10.5","0.0"]}'
   database:
-    disableModelExtraction: 0
+    disableModelExtraction: 1
   shaders:
     depthMaskShader: {fileID: 4800000, guid: 1ce7eb78425fb1540838bc9d5d95857a, type: 3}
   videoBackground:
     numDivisions: 2
-    videoBackgroundShader: {fileID: 4800000, guid: f40623b353e2f1943b1b3ba42975db7a, type: 3}
+    videoBackgroundShader: {fileID: 4800000, guid: f40623b353e2f1943b1b3ba42975db7a,
+      type: 3}
     unlitShader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
     videoBackgroundEnabled: 1
   deviceTracker:
@@ -41,8 +42,8 @@ MonoBehaviour:
     autoImportArcore: 1
     thirdPartyARCoreClientDetected: 0
   playmode:
-    mSequencePath: 
-    playModeType: 0
+    mSequencePath: Assets/SamplesResources/Recordings/area_target.mp4
+    playModeType: 2
   webcam:
     renderTextureLayer: 30
   packageInformation:
