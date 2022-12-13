@@ -205,7 +205,7 @@ export function ConversationScreen({navigation}) {
                     alignItems: "center",
                     margin: 10,
                 }}>
-                <Text style={texts.enigme_title}>CONVERSATIONS</Text>
+                <Text style={texts.conversations_title}>CONVERSATIONS</Text>
             </View>
             <View
                 style={{

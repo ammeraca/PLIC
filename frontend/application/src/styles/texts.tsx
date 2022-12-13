@@ -93,6 +93,12 @@ export const texts = StyleSheet.create({
         fontSize: 40,
         paddingTop: 20,
     },
+    conversations_title: {
+        fontFamily: "Montserrat-Bold",
+        color: orange.background_principal.backgroundColor,
+        fontSize: 35,
+        paddingTop: 20,
+    },
     /* Enigme Page */
     enigme_page_main_text: {
         fontFamily: "Montserrat-Bold",
