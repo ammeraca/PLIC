@@ -11,6 +11,7 @@ export function MessagesScreen({navigation, route}) {
     const {GroupID, title} = route.params;
     console.log("ID of group is: " + GroupID);
     const [messages, setMessages] = useState<any[]>([]);
+    const [msgId, setMsgId] = useState("");
 
     const socketRef = SocketIOClient("ws://bal-app-api.herokuapp.com", {
         transports: ["websocket"], // you need to explicitly tell it to use websockets
@@ -35,9 +36,10 @@ export function MessagesScreen({navigation, route}) {
         socketRef.emit("createRoom", GroupID, response => {
             console.log("Create Room" + response);
         });
-        var messageId = 0;
         socketRef.on("message", response => {
-            messageId = messageId + 1;
+            console.log("MsgId: " + msgId);
+            //var messageId = msgId;
+            var messageId = Math.round(Math.random() * 10000000);
             var sentMessages = {
                 _id: messageId.toString(),
                 text: response.message,

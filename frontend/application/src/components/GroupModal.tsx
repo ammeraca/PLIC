@@ -26,7 +26,7 @@ function extractGroupList(groups) {
     return result;
 }
 
-export var activeGroup: number = 1;
+export var activeGroup: number = 43;
 
 const GroupModal = () => {
     const [modalVisible, setModalVisible] = useState(false);

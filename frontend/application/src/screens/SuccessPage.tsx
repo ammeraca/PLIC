@@ -31,7 +31,7 @@ export default function SucessPageScreen({navigation, route}) {
             });
     }, [navigation]);
     return (
-        <SafeAreaView style={container.simple_center_flex1}>
+        <SafeAreaView style={container.success_simple_center_flex1}>
             <View style={container.success_page_view}>
                 <View
                     style={{

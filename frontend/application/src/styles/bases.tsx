@@ -23,6 +23,12 @@ export const container = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
+    success_simple_center_flex1: {
+        flex: 1,
+        backgroundColor: "white",
+        justifyContent: "center",
+        alignItems: "center",
+    },
     simple_center_flex2: {
         flex: 2,
         justifyContent: "center",
