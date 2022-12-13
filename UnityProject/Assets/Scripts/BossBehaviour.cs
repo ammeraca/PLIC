@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class BossBehaviour : MonoBehaviour
 {
     public Animator animator;
     public Transform playerPos;
-    public float speed = 5f;
-    public float distanceToPlayer = 5f;
+    public float speed;
+    public float distanceToPlayer;
+    public float distanceMargin;
 
     private int indexDialog = 0;
     public List<string> dialogs;
@@ -44,7 +46,12 @@ public class BossBehaviour : MonoBehaviour
         }
         if (running)
         {
-            transform.RotateAround(playerPos.position, Vector3.up, -  360f * speed * Time.deltaTime);
+            var distance = Vector3.Distance(playerPos.position, transform.position);
+            if (distance > distanceToPlayer + distanceMargin)
+                transform.Translate(Vector3.back * Time.deltaTime);
+            else if (distance > distanceToPlayer - distanceMargin)
+                transform.Translate(Vector3.forward * Time.deltaTime);
+            transform.RotateAround(playerPos.position, Vector3.up, -  180f * speed * Time.deltaTime);
         }
     }
 
@@ -60,6 +67,12 @@ public class BossBehaviour : MonoBehaviour
                 dialogData.Add(new DialogData(dialogs[i], "The Boss", () => ++indexDialog));
             }
             dialogData[dialogData.Count - 1].Callback = () => EndDialog();
+            if (indexDialog == 0)
+            {
+                dialogData[0].SelectList.Add("1", "hmm...");
+                dialogData[0].SelectList.Add("2", "...");
+                dialogData[0].SelectList.Add("3", "Une partie de Gwentt?");
+            }
             dialogManager.Show(dialogData);
             animator.SetBool("talking", true);
         } else if (hit)
@@ -80,6 +93,7 @@ public class BossBehaviour : MonoBehaviour
         hit = true;
         running = false;
         animator.SetBool("hit", true);
+        transform.LookAt(collision.transform);
         healthBeahaviour.gameObject.SetActive(true);
     }
 
