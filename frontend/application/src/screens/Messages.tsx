@@ -37,8 +37,6 @@ export function MessagesScreen({navigation, route}) {
             console.log("Create Room" + response);
         });
         socketRef.on("message", response => {
-            console.log("MsgId: " + msgId);
-            //var messageId = msgId;
             var messageId = Math.round(Math.random() * 10000000);
             var sentMessages = {
                 _id: messageId.toString(),
